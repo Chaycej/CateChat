@@ -1,0 +1,480 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		018538B7782749E2F7CF038B /* Pods_CateChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77EEBE91E3E501C7210E8349 /* Pods_CateChat.framework */; };
+		C67EBB0A1F16C5A60058ECF6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67EBB091F16C5A60058ECF6 /* AppDelegate.swift */; };
+		C67EBB0F1F16C5A60058ECF6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C67EBB0D1F16C5A60058ECF6 /* Main.storyboard */; };
+		C67EBB111F16C5A60058ECF6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C67EBB101F16C5A60058ECF6 /* Assets.xcassets */; };
+		C67EBB141F16C5A60058ECF6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C67EBB121F16C5A60058ECF6 /* LaunchScreen.storyboard */; };
+		C67EBB1D1F16D4E90058ECF6 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67EBB1C1F16D4E90058ECF6 /* HomeController.swift */; };
+		C67EBB221F16D55E0058ECF6 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67EBB211F16D55E0058ECF6 /* RegisterController.swift */; };
+		C67EBB241F16D5690058ECF6 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67EBB231F16D5690058ECF6 /* LoginController.swift */; };
+		C67EBB261F16D5BE0058ECF6 /* AccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67EBB251F16D5BE0058ECF6 /* AccountController.swift */; };
+		C67EBB2A1F16D6C00058ECF6 /* GoogleToolboxForMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C67EBB291F16D6C00058ECF6 /* GoogleToolboxForMac.framework */; };
+		C67EBB2C1F16D6C30058ECF6 /* GTMSessionFetcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C67EBB2B1F16D6C30058ECF6 /* GTMSessionFetcher.framework */; };
+		C67EBB2F1F16D7E80058ECF6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67EBB2E1F16D7E80058ECF6 /* Extensions.swift */; };
+		C67EBB311F16D8A30058ECF6 /* AccountControllerHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67EBB301F16D8A30058ECF6 /* AccountControllerHandler.swift */; };
+		C67EBB331F16DB620058ECF6 /* RegisterControllerHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67EBB321F16DB620058ECF6 /* RegisterControllerHandler.swift */; };
+		C67EBB351F17EDD70058ECF6 /* LoginControllerHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67EBB341F17EDD70058ECF6 /* LoginControllerHandler.swift */; };
+		C67EBB371F17F9560058ECF6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C67EBB361F17F9560058ECF6 /* GoogleService-Info.plist */; };
+		C67EBB391F18036E0058ECF6 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67EBB381F18036E0058ECF6 /* Account.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2B6AA39CB1E7C814012F3671 /* Pods-CateChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CateChat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CateChat/Pods-CateChat.debug.xcconfig"; sourceTree = "<group>"; };
+		6941F623DE40F1791D3C9A77 /* Pods-CateChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CateChat.release.xcconfig"; path = "Pods/Target Support Files/Pods-CateChat/Pods-CateChat.release.xcconfig"; sourceTree = "<group>"; };
+		77EEBE91E3E501C7210E8349 /* Pods_CateChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CateChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C67EBB061F16C5A60058ECF6 /* CateChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CateChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C67EBB091F16C5A60058ECF6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C67EBB0E1F16C5A60058ECF6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C67EBB101F16C5A60058ECF6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C67EBB131F16C5A60058ECF6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C67EBB151F16C5A60058ECF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C67EBB1C1F16D4E90058ECF6 /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
+		C67EBB211F16D55E0058ECF6 /* RegisterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
+		C67EBB231F16D5690058ECF6 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		C67EBB251F16D5BE0058ECF6 /* AccountController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountController.swift; sourceTree = "<group>"; };
+		C67EBB291F16D6C00058ECF6 /* GoogleToolboxForMac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleToolboxForMac.framework; path = "Pods/../build/Debug-iphoneos/GoogleToolboxForMac/GoogleToolboxForMac.framework"; sourceTree = "<group>"; };
+		C67EBB2B1F16D6C30058ECF6 /* GTMSessionFetcher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GTMSessionFetcher.framework; path = "Pods/../build/Debug-iphoneos/GTMSessionFetcher/GTMSessionFetcher.framework"; sourceTree = "<group>"; };
+		C67EBB2E1F16D7E80058ECF6 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		C67EBB301F16D8A30058ECF6 /* AccountControllerHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountControllerHandler.swift; sourceTree = "<group>"; };
+		C67EBB321F16DB620058ECF6 /* RegisterControllerHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterControllerHandler.swift; sourceTree = "<group>"; };
+		C67EBB341F17EDD70058ECF6 /* LoginControllerHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginControllerHandler.swift; sourceTree = "<group>"; };
+		C67EBB361F17F9560058ECF6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C67EBB381F18036E0058ECF6 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C67EBB031F16C5A60058ECF6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C67EBB2C1F16D6C30058ECF6 /* GTMSessionFetcher.framework in Frameworks */,
+				C67EBB2A1F16D6C00058ECF6 /* GoogleToolboxForMac.framework in Frameworks */,
+				018538B7782749E2F7CF038B /* Pods_CateChat.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		07811D61CFB149D3087F2868 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C67EBB2B1F16D6C30058ECF6 /* GTMSessionFetcher.framework */,
+				C67EBB291F16D6C00058ECF6 /* GoogleToolboxForMac.framework */,
+				77EEBE91E3E501C7210E8349 /* Pods_CateChat.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C67EBAFD1F16C5A60058ECF6 = {
+			isa = PBXGroup;
+			children = (
+				C67EBB081F16C5A60058ECF6 /* CateChat */,
+				C67EBB071F16C5A60058ECF6 /* Products */,
+				F495D485E7EEAF7FDAAAE1C2 /* Pods */,
+				07811D61CFB149D3087F2868 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		C67EBB071F16C5A60058ECF6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C67EBB061F16C5A60058ECF6 /* CateChat.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C67EBB081F16C5A60058ECF6 /* CateChat */ = {
+			isa = PBXGroup;
+			children = (
+				C67EBB2D1F16D7D20058ECF6 /* Extensions */,
+				C67EBB1B1F16D4D40058ECF6 /* Supporting Files */,
+				C67EBB201F16D5370058ECF6 /* Controller Handlers */,
+				C67EBB1E1F16D4ED0058ECF6 /* View Controllers */,
+			);
+			path = CateChat;
+			sourceTree = "<group>";
+		};
+		C67EBB1B1F16D4D40058ECF6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C67EBB361F17F9560058ECF6 /* GoogleService-Info.plist */,
+				C67EBB091F16C5A60058ECF6 /* AppDelegate.swift */,
+				C67EBB0D1F16C5A60058ECF6 /* Main.storyboard */,
+				C67EBB101F16C5A60058ECF6 /* Assets.xcassets */,
+				C67EBB121F16C5A60058ECF6 /* LaunchScreen.storyboard */,
+				C67EBB151F16C5A60058ECF6 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C67EBB1E1F16D4ED0058ECF6 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C67EBB1C1F16D4E90058ECF6 /* HomeController.swift */,
+				C67EBB211F16D55E0058ECF6 /* RegisterController.swift */,
+				C67EBB231F16D5690058ECF6 /* LoginController.swift */,
+				C67EBB251F16D5BE0058ECF6 /* AccountController.swift */,
+				C67EBB1F1F16D5000058ECF6 /* Model */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		C67EBB1F1F16D5000058ECF6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C67EBB381F18036E0058ECF6 /* Account.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		C67EBB201F16D5370058ECF6 /* Controller Handlers */ = {
+			isa = PBXGroup;
+			children = (
+				C67EBB301F16D8A30058ECF6 /* AccountControllerHandler.swift */,
+				C67EBB321F16DB620058ECF6 /* RegisterControllerHandler.swift */,
+				C67EBB341F17EDD70058ECF6 /* LoginControllerHandler.swift */,
+			);
+			name = "Controller Handlers";
+			sourceTree = "<group>";
+		};
+		C67EBB2D1F16D7D20058ECF6 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C67EBB2E1F16D7E80058ECF6 /* Extensions.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		F495D485E7EEAF7FDAAAE1C2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2B6AA39CB1E7C814012F3671 /* Pods-CateChat.debug.xcconfig */,
+				6941F623DE40F1791D3C9A77 /* Pods-CateChat.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C67EBB051F16C5A60058ECF6 /* CateChat */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C67EBB181F16C5A60058ECF6 /* Build configuration list for PBXNativeTarget "CateChat" */;
+			buildPhases = (
+				54094527D896376D723830C4 /* [CP] Check Pods Manifest.lock */,
+				C67EBB021F16C5A60058ECF6 /* Sources */,
+				C67EBB031F16C5A60058ECF6 /* Frameworks */,
+				C67EBB041F16C5A60058ECF6 /* Resources */,
+				64144C6EE5E20CCDDED6C98C /* [CP] Embed Pods Frameworks */,
+				121839F98AC504559935EB69 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CateChat;
+			productName = CateChat;
+			productReference = C67EBB061F16C5A60058ECF6 /* CateChat.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C67EBAFE1F16C5A60058ECF6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = wsuv;
+				TargetAttributes = {
+					C67EBB051F16C5A60058ECF6 = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = C67EBB011F16C5A60058ECF6 /* Build configuration list for PBXProject "CateChat" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C67EBAFD1F16C5A60058ECF6;
+			productRefGroup = C67EBB071F16C5A60058ECF6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C67EBB051F16C5A60058ECF6 /* CateChat */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C67EBB041F16C5A60058ECF6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C67EBB141F16C5A60058ECF6 /* LaunchScreen.storyboard in Resources */,
+				C67EBB111F16C5A60058ECF6 /* Assets.xcassets in Resources */,
+				C67EBB0F1F16C5A60058ECF6 /* Main.storyboard in Resources */,
+				C67EBB371F17F9560058ECF6 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		121839F98AC504559935EB69 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CateChat/Pods-CateChat-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		54094527D896376D723830C4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		64144C6EE5E20CCDDED6C98C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CateChat/Pods-CateChat-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C67EBB021F16C5A60058ECF6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C67EBB351F17EDD70058ECF6 /* LoginControllerHandler.swift in Sources */,
+				C67EBB311F16D8A30058ECF6 /* AccountControllerHandler.swift in Sources */,
+				C67EBB331F16DB620058ECF6 /* RegisterControllerHandler.swift in Sources */,
+				C67EBB1D1F16D4E90058ECF6 /* HomeController.swift in Sources */,
+				C67EBB2F1F16D7E80058ECF6 /* Extensions.swift in Sources */,
+				C67EBB391F18036E0058ECF6 /* Account.swift in Sources */,
+				C67EBB261F16D5BE0058ECF6 /* AccountController.swift in Sources */,
+				C67EBB241F16D5690058ECF6 /* LoginController.swift in Sources */,
+				C67EBB0A1F16C5A60058ECF6 /* AppDelegate.swift in Sources */,
+				C67EBB221F16D55E0058ECF6 /* RegisterController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		C67EBB0D1F16C5A60058ECF6 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C67EBB0E1F16C5A60058ECF6 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		C67EBB121F16C5A60058ECF6 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C67EBB131F16C5A60058ECF6 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C67EBB161F16C5A60058ECF6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C67EBB171F16C5A60058ECF6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C67EBB191F16C5A60058ECF6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2B6AA39CB1E7C814012F3671 /* Pods-CateChat.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/GoogleToolboxForMac",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/GTMSessionFetcher",
+				);
+				INFOPLIST_FILE = CateChat/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Chayce.CateChat;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		C67EBB1A1F16C5A60058ECF6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6941F623DE40F1791D3C9A77 /* Pods-CateChat.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/GoogleToolboxForMac",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/GTMSessionFetcher",
+				);
+				INFOPLIST_FILE = CateChat/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Chayce.CateChat;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C67EBB011F16C5A60058ECF6 /* Build configuration list for PBXProject "CateChat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C67EBB161F16C5A60058ECF6 /* Debug */,
+				C67EBB171F16C5A60058ECF6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C67EBB181F16C5A60058ECF6 /* Build configuration list for PBXNativeTarget "CateChat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C67EBB191F16C5A60058ECF6 /* Debug */,
+				C67EBB1A1F16C5A60058ECF6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C67EBAFE1F16C5A60058ECF6 /* Project object */;
+}
