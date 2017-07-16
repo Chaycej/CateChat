@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		018538B7782749E2F7CF038B /* Pods_CateChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77EEBE91E3E501C7210E8349 /* Pods_CateChat.framework */; };
+		C66C318F1F1AA6EE00266652 /* ChatControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66C318E1F1AA6EE00266652 /* ChatControllerViewController.swift */; };
+		C66C31951F1B158500266652 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66C31941F1B158500266652 /* Message.swift */; };
 		C67EBB0A1F16C5A60058ECF6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67EBB091F16C5A60058ECF6 /* AppDelegate.swift */; };
 		C67EBB0F1F16C5A60058ECF6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C67EBB0D1F16C5A60058ECF6 /* Main.storyboard */; };
 		C67EBB111F16C5A60058ECF6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C67EBB101F16C5A60058ECF6 /* Assets.xcassets */; };
@@ -24,12 +26,16 @@
 		C67EBB351F17EDD70058ECF6 /* LoginControllerHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67EBB341F17EDD70058ECF6 /* LoginControllerHandler.swift */; };
 		C67EBB371F17F9560058ECF6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C67EBB361F17F9560058ECF6 /* GoogleService-Info.plist */; };
 		C67EBB391F18036E0058ECF6 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67EBB381F18036E0058ECF6 /* Account.swift */; };
+		C67EBB3B1F1810E00058ECF6 /* MessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67EBB3A1F1810E00058ECF6 /* MessageController.swift */; };
+		C67EBB3E1F1817820058ECF6 /* AccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67EBB3D1F1817820058ECF6 /* AccountCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2B6AA39CB1E7C814012F3671 /* Pods-CateChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CateChat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CateChat/Pods-CateChat.debug.xcconfig"; sourceTree = "<group>"; };
 		6941F623DE40F1791D3C9A77 /* Pods-CateChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CateChat.release.xcconfig"; path = "Pods/Target Support Files/Pods-CateChat/Pods-CateChat.release.xcconfig"; sourceTree = "<group>"; };
 		77EEBE91E3E501C7210E8349 /* Pods_CateChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CateChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C66C318E1F1AA6EE00266652 /* ChatControllerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatControllerViewController.swift; sourceTree = "<group>"; };
+		C66C31941F1B158500266652 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		C67EBB061F16C5A60058ECF6 /* CateChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CateChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C67EBB091F16C5A60058ECF6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C67EBB0E1F16C5A60058ECF6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -48,6 +54,8 @@
 		C67EBB341F17EDD70058ECF6 /* LoginControllerHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginControllerHandler.swift; sourceTree = "<group>"; };
 		C67EBB361F17F9560058ECF6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C67EBB381F18036E0058ECF6 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		C67EBB3A1F1810E00058ECF6 /* MessageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageController.swift; sourceTree = "<group>"; };
+		C67EBB3D1F1817820058ECF6 /* AccountCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +107,8 @@
 				C67EBB1B1F16D4D40058ECF6 /* Supporting Files */,
 				C67EBB201F16D5370058ECF6 /* Controller Handlers */,
 				C67EBB1E1F16D4ED0058ECF6 /* View Controllers */,
+				C67EBB1F1F16D5000058ECF6 /* Model */,
+				C67EBB3C1F18173B0058ECF6 /* Views */,
 			);
 			path = CateChat;
 			sourceTree = "<group>";
@@ -120,10 +130,11 @@
 			isa = PBXGroup;
 			children = (
 				C67EBB1C1F16D4E90058ECF6 /* HomeController.swift */,
+				C67EBB3A1F1810E00058ECF6 /* MessageController.swift */,
 				C67EBB211F16D55E0058ECF6 /* RegisterController.swift */,
 				C67EBB231F16D5690058ECF6 /* LoginController.swift */,
 				C67EBB251F16D5BE0058ECF6 /* AccountController.swift */,
-				C67EBB1F1F16D5000058ECF6 /* Model */,
+				C66C318E1F1AA6EE00266652 /* ChatControllerViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -132,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				C67EBB381F18036E0058ECF6 /* Account.swift */,
+				C66C31941F1B158500266652 /* Message.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -152,6 +164,14 @@
 				C67EBB2E1F16D7E80058ECF6 /* Extensions.swift */,
 			);
 			name = Extensions;
+			sourceTree = "<group>";
+		};
+		C67EBB3C1F18173B0058ECF6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C67EBB3D1F1817820058ECF6 /* AccountCell.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		F495D485E7EEAF7FDAAAE1C2 /* Pods */ = {
@@ -287,12 +307,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C67EBB3B1F1810E00058ECF6 /* MessageController.swift in Sources */,
 				C67EBB351F17EDD70058ECF6 /* LoginControllerHandler.swift in Sources */,
+				C66C318F1F1AA6EE00266652 /* ChatControllerViewController.swift in Sources */,
 				C67EBB311F16D8A30058ECF6 /* AccountControllerHandler.swift in Sources */,
 				C67EBB331F16DB620058ECF6 /* RegisterControllerHandler.swift in Sources */,
 				C67EBB1D1F16D4E90058ECF6 /* HomeController.swift in Sources */,
+				C67EBB3E1F1817820058ECF6 /* AccountCell.swift in Sources */,
 				C67EBB2F1F16D7E80058ECF6 /* Extensions.swift in Sources */,
 				C67EBB391F18036E0058ECF6 /* Account.swift in Sources */,
+				C66C31951F1B158500266652 /* Message.swift in Sources */,
 				C67EBB261F16D5BE0058ECF6 /* AccountController.swift in Sources */,
 				C67EBB241F16D5690058ECF6 /* LoginController.swift in Sources */,
 				C67EBB0A1F16C5A60058ECF6 /* AppDelegate.swift in Sources */,

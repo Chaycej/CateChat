@@ -43,7 +43,7 @@ class RegisterController: UIViewController {
 
     lazy var profileImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "")
+        imageView.image = UIImage(named: "profileImage")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
         imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectProfileImageView)))
@@ -54,6 +54,7 @@ class RegisterController: UIViewController {
     lazy var profileImageLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Tap to upload a profile photo"
         label.textColor = UIColor.black
         label.backgroundColor = UIColor.white
         label.adjustsFontSizeToFitWidth = true
@@ -117,14 +118,14 @@ class RegisterController: UIViewController {
     }()
     
     func setupProfileImageView() {
-        profileImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100)
+        profileImageView.bottomAnchor.constraint(equalTo: profileImageLabel.topAnchor, constant: -8).isActive = true
         profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        profileImageView.widthAnchor.constraint(equalToConstant: 150).isActive = true
-        profileImageView.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        profileImageView.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        profileImageView.heightAnchor.constraint(equalToConstant: 100).isActive = true
     }
     
     func setupProfileImageLabel() {
-        profileImageLabel.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 15).isActive = true
+        profileImageLabel.bottomAnchor.constraint(equalTo: userNameTextField.topAnchor, constant: -45).isActive = true
         profileImageLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         profileImageLabel.widthAnchor.constraint(equalToConstant: 150).isActive = true
         profileImageLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true

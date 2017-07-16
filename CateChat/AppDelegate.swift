@@ -25,8 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UINavigationBar.appearance().backgroundColor = UIColor.red
         
-        
-        
         return true
     }
 

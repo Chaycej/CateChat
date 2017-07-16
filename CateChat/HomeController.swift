@@ -9,15 +9,15 @@
 import UIKit
 import Firebase
 
-class HomeController: UITableViewController {
+class HomeController: UIViewController {
 
     var ref = Database.database().reference()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        tableView.dataSource = self
-        tableView.delegate = self
+        
+        
+        view.backgroundColor = UIColor.white
         
         setupNavigationItems()
         checkIfUserIsLoggedIn()
@@ -26,11 +26,14 @@ class HomeController: UITableViewController {
     func setupNavigationItems() {
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "New Message", style: .plain, target: self, action: #selector(handleNewMessage))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Message", style: .plain, target: self, action: #selector(handleNewMessage))
+        let currentUser = Auth.auth().currentUser
+        navigationItem.title = currentUser?.displayName
     }
     
     func handleNewMessage() {
-        
+        let navController = UINavigationController(rootViewController: MessageController())
+        present(navController, animated: true, completion: nil)
     }
     
     func handleLogout() {
@@ -55,12 +58,9 @@ class HomeController: UITableViewController {
         ref.child("users").child(uid).observe(.value, with: { (snapshot) in
             
             if let dictionary = snapshot.value as? [String: AnyObject] {
-                //                self.navigationItem.title = dictionary["name"] as? String
-                
-                let user = Account(dictionary: dictionary)
+                let user = Account()
                 self.navigationItem.title = user.name
             }
-            
         } , withCancel: nil)
     }
 
@@ -80,5 +80,15 @@ class HomeController: UITableViewController {
             }, withCancel: nil)
         }
     }
+    
+    let settingsButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Settings", for: UIControlState())
+        button.setTitleColor(UIColor.black, for: UIControlState())
+        button.layer.cornerRadius = 5
+        button.layer.masksToBounds = true
+        return button
+    }()
 
 }
