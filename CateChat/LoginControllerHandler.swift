@@ -25,7 +25,7 @@ extension LoginController {
         Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
             
             if error != nil {
-                print(error)
+                print(error!)
             }
             
             // logged in

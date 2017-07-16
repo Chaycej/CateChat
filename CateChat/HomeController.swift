@@ -13,26 +13,38 @@ class HomeController: UIViewController {
 
     var ref = Database.database().reference()
     
+    var account: Account?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+    
         view.backgroundColor = UIColor.white
         
-        setupNavigationItems()
+        view.addSubview(messagesButton)
+        view.addSubview(settingsButton)
+        
+        setupMessagesButton()
+        setupSettingsButton()
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "New Message", style: .plain, target: self, action: #selector(handleNewMessage))
+        
         checkIfUserIsLoggedIn()
     }
     
-    func setupNavigationItems() {
+    func viewMessages() {
+        let userMessageController = UserMessageController()
+    
+        let navController = UINavigationController(rootViewController: userMessageController)
+        present(navController, animated: true, completion: nil)
+    }
+    
+    func viewSettings() {
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Message", style: .plain, target: self, action: #selector(handleNewMessage))
-        let currentUser = Auth.auth().currentUser
-        navigationItem.title = currentUser?.displayName
     }
     
     func handleNewMessage() {
-        let navController = UINavigationController(rootViewController: MessageController())
+        let navController = UINavigationController(rootViewController: NewMessageController())
         present(navController, animated: true, completion: nil)
     }
     
@@ -54,10 +66,9 @@ class HomeController: UIViewController {
             print("Could not retrieve user")
             return
         }
-        
         ref.child("users").child(uid).observe(.value, with: { (snapshot) in
             
-            if let dictionary = snapshot.value as? [String: AnyObject] {
+            if (snapshot.value as? [String: AnyObject]) != nil {
                 let user = Account()
                 self.navigationItem.title = user.name
             }
@@ -81,14 +92,52 @@ class HomeController: UIViewController {
         }
     }
     
+    let messagesButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("My messages", for: UIControlState())
+        button.setTitleColor(UIColor.white, for: UIControlState())
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 22)
+        button.titleLabel?.adjustsFontSizeToFitWidth = true
+        button.titleLabel?.textAlignment = .center
+        button.contentVerticalAlignment = UIControlContentVerticalAlignment.top
+        button.contentHorizontalAlignment = UIControlContentHorizontalAlignment.center
+        button.backgroundColor = UIColor(r: 46, g: 80, b: 119)
+        button.layer.cornerRadius = 5
+        button.layer.masksToBounds = true
+        button.addTarget(self, action: #selector(viewMessages), for: .touchUpInside)
+        return button
+    }()
+    
     let settingsButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Settings", for: UIControlState())
-        button.setTitleColor(UIColor.black, for: UIControlState())
+        button.setTitleColor(UIColor.white, for: UIControlState())
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 22)
+        button.titleLabel?.adjustsFontSizeToFitWidth = true
+        button.titleLabel?.textAlignment = .center
+        button.contentVerticalAlignment = UIControlContentVerticalAlignment.top
+        button.contentHorizontalAlignment = UIControlContentHorizontalAlignment.center
+        button.backgroundColor = UIColor(r: 124, g: 144, b: 160)
         button.layer.cornerRadius = 5
         button.layer.masksToBounds = true
+        button.addTarget(self, action: #selector(viewSettings), for: .touchUpInside)
         return button
     }()
+    
+    func setupMessagesButton() {
+        messagesButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 3).isActive = true
+        messagesButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -3).isActive = true
+        messagesButton.widthAnchor.constraint(equalToConstant: view.bounds.width/2 - 10).isActive = true
+        messagesButton.heightAnchor.constraint(equalToConstant: view.bounds.height/4).isActive = true
+    }
+    
+    func setupSettingsButton() {
+        settingsButton.leftAnchor.constraint(equalTo: messagesButton.rightAnchor, constant: 14).isActive = true
+        settingsButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -3).isActive = true
+        settingsButton.widthAnchor.constraint(equalToConstant: view.bounds.width/2 - 10).isActive = true
+        settingsButton.heightAnchor.constraint(equalToConstant: view.bounds.height/4).isActive = true
+    }
 
 }

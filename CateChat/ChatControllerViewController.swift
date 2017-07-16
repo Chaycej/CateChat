@@ -11,7 +11,7 @@ import Firebase
 
 class ChatController: UICollectionViewController, UITextFieldDelegate {
 
-    let ref = Database.database().reference().child("messages")
+    let ref = Database.database().reference()
     var account: Account? {
         
         didSet {
@@ -37,26 +37,30 @@ class ChatController: UICollectionViewController, UITextFieldDelegate {
     
     func sendMessage() {
      
-        let childRef = ref.childByAutoId()
+        let childRef = ref.child("messages").childByAutoId()
         let fromID = Auth.auth().currentUser!.uid
+        let toID = account!.id!
         let timeStamp = Int(NSDate().timeIntervalSince1970)
         let values = ["text": inputTextField.text!, "toID": account!.id!, "fromID": fromID, "timeStamp": timeStamp] as [String : Any]
-        childRef.updateChildValues(values)
-        observeMessages()
-    }
-    
-    func observeMessages() {
-        
-        ref.observe(.childAdded, with: { (snapshot) in
-            
-            if let dictionary = snapshot.value as? [String: AnyObject] {
-                let message = Message()
-                message.setValuesForKeys(dictionary)
-                print(message.text)
+//        childRef.updateChildValues(values)
+        childRef.updateChildValues(values) { (error, ref) in
+            if error != nil {
+                print(error!)
+                return
             }
-        }, withCancel: nil)
+            
+            self.inputTextField.text = nil
+            
+            let userMessagesRef = Database.database().reference().child("user-messages").child(fromID)
+            let messageID = childRef.key
+            userMessagesRef.updateChildValues([messageID: 1])
+            
+            let recipientMessageRef = Database.database().reference().child("user-messages").child(toID)
+            recipientMessageRef.updateChildValues([messageID: 1])
+            
+            
+        }
     }
-    
 
     let inputMessageContainer: UIView = {
         let view = UIView()

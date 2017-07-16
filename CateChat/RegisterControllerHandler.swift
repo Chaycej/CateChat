@@ -92,12 +92,11 @@ extension RegisterController: UIImagePickerControllerDelegate, UINavigationContr
         
         if let originalImage = info["UIImagePickerControllerOriginalImage"] as? UIImage {
             
-            selectedImagePicker = originalImage as! UIImage
+            selectedImagePicker = originalImage
         } else if let editedImage = info["UIimagePickerControllerEditedImage"] as? UIImage {
             
-            selectedImagePicker = editedImage as! UIImage
+            selectedImagePicker = editedImage
         }
-        
         if let selectedImage = selectedImagePicker {
             
             profileImageView.image = selectedImage

@@ -78,7 +78,6 @@ class RegisterController: UIViewController {
         let tf = UITextField()
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.textAlignment = .center
-        tf.font = UIFont.systemFont(ofSize: 15)
         tf.placeholder = "Username"
         tf.layer.cornerRadius = 5
         tf.borderStyle = .roundedRect

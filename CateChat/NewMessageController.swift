@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class MessageController: UITableViewController {
+class NewMessageController: UITableViewController {
 
     var cellID = "CellID"
     var ref = Database.database().reference()
@@ -22,14 +22,11 @@ class MessageController: UITableViewController {
         tableView.delegate = self
         tableView.register(AccountCell.self, forCellReuseIdentifier: cellID)
         
-        setupNavigationItems()
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelMessage))
+        
         fetchUser()
     }
-    
-    func setupNavigationItems() {
-        
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelMessage))
-    }
+  
     
     func cancelMessage() {
         dismiss(animated: true, completion: nil)
@@ -50,13 +47,12 @@ class MessageController: UITableViewController {
                     self.tableView.reloadData()
                 }
             }
-            
         }, withCancel: nil)
     }
 }
 
 // TableView datasource and delegate
-extension MessageController {
+extension NewMessageController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return accounts.count
@@ -67,6 +63,7 @@ extension MessageController {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! AccountCell
         let account = accounts[indexPath.row]
         cell.textLabel?.text = accounts[indexPath.row].name
+        cell.detailTextLabel?.text = accounts[indexPath.row].email
         
         if let profileImageURL = account.profileImageURL {
             cell.profileImageView.loadImageUsingCacheWithURLString(URLString: profileImageURL)

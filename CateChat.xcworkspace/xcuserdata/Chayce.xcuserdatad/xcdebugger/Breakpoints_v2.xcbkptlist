@@ -17,38 +17,6 @@
             endingLineNumber = "42"
             landmarkName = "fetchUser()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CateChat.MessageController.(fetchUser () -&gt; ()).(closure #1)"
-                  moduleName = "CateChat"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Chayce/iosProjects/CateChat/CateChat/MessageController.swift"
-                  timestampString = "521854155.797776"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "42"
-                  endingLineNumber = "42"
-                  offsetFromSymbolStart = "19">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CateChat.MessageController.(fetchUser () -&gt; ()).(closure #1)"
-                  moduleName = "CateChat"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Chayce/iosProjects/CateChat/CateChat/MessageController.swift"
-                  timestampString = "521854155.802756"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "42"
-                  endingLineNumber = "42"
-                  offsetFromSymbolStart = "533">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
