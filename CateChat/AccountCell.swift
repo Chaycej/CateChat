@@ -13,7 +13,6 @@ class AccountCell: UITableViewCell {
 
     var ref = Database.database().reference()
     var message: Message? {
-        
         didSet {
             setupNameAndProfileImage()
             detailTextLabel?.text = message?.text
@@ -29,14 +28,7 @@ class AccountCell: UITableViewCell {
     
     private func setupNameAndProfileImage() {
         
-        let chatPartnerId: String?
-        if message?.fromID == Auth.auth().currentUser?.uid {
-            chatPartnerId = message?.toID
-        } else {
-            chatPartnerId = message?.fromID
-        }
-        
-        if let id = chatPartnerId {
+        if let id = message?.chatPartnerId() {
             ref.child("users").child(id).observeSingleEvent(of: .value, with: { (snapshot) in
                 
                 if let dictionary = snapshot.value as? [String: AnyObject] {

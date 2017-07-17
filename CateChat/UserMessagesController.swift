@@ -23,7 +23,7 @@ class UserMessageController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadUserMessages()
+        observeUserMessages()
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -37,23 +37,19 @@ class UserMessageController: UITableViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    func loadUserMessages() {
+    func observeUserMessages() {
         
-        guard let uid = Auth.auth().currentUser?.uid else {
-            print("Could not fetch a logged in user")
+        guard let userID = Auth.auth().currentUser?.uid else {
+            print("No user logged in ---observeUserMessage()")
             return
         }
-        
-        ref.child("user-messages").child(uid).observe(.childAdded, with: { (snapshot) in
+        let ref = Database.database().reference().child("user-messages").child(userID)
+        ref.observe(.childAdded, with: { (snapshot) in
             
-            print("userMessages")
-            print(snapshot)
-            print("Snapshot key is \(snapshot.key)")
-            let messageID = snapshot.key
-            let messagesReference = Database.database().reference().child("messages").child(messageID)
-            messagesReference.observeSingleEvent(of: .value, with: { (snapshot) in
-                
-                print(snapshot)
+            let messageId = snapshot.key
+            let messageReference = Database.database().reference().child("messages").child(messageId)
+            
+            messageReference.observeSingleEvent(of: .value, with: { (snapshot) in
                 
                 if let dictionary = snapshot.value as? [String: AnyObject] {
                     let message = Message()
@@ -62,10 +58,9 @@ class UserMessageController: UITableViewController {
                     
                     if let toID = message.toID {
                         self.messagesDictionary[toID] = message
-                        
                         self.messages = Array(self.messagesDictionary.values)
                         self.messages.sort(by: { (m1, m2) -> Bool in
-                            (m1.timeStamp?.intValue)! > (m2.timeStamp?.intValue)!
+                            return (m1.timeStamp?.intValue)! > (m2.timeStamp?.intValue)!
                         })
                     }
                     
@@ -73,11 +68,35 @@ class UserMessageController: UITableViewController {
                         self.tableView.reloadData()
                     }
                 }
-                
             }, withCancel: nil)
             
         }, withCancel: nil)
     }
+    
+    // Update model
+//    func observeMessages() {
+//        
+//        guard let uid = Auth.auth().currentUser?.uid else {
+//            print("Could not fetch a logged in user")
+//            return
+//        }
+//        
+//        ref.child("messages").observe(.childAdded, with: { (snapshot) in
+//            
+//            if let dictionary = snapshot.value as? [String: AnyObject] {
+//                let message = Message()
+//                message.setValuesForKeys(dictionary)
+//                
+//                if let toID = message.toID {
+//                    self.messagesDictionary[toID] = message
+//                    self.messages = Array(self.messagesDictionary.values)
+//                    self.messages.sort(by: { (m1, m2) -> Bool in
+//                        return (m1.timeStamp?.intValue)! > (m2.timeStamp?.intValue)!
+//                    })
+//                }
+//            }
+//        }, withCancel: nil)
+//    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return messages.count
@@ -88,10 +107,34 @@ class UserMessageController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! AccountCell
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! AccountCell
         let message = messages[indexPath.row]
         cell.message = message
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let message = messages[indexPath.row]
+        
+        guard let chatPartnerID = message.chatPartnerId() else {
+            print("Could not get chatPartnerID when row was selected")
+            return
+        }
+        
+        let ref = Database.database().reference().child("users").child(chatPartnerID)
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            guard let dictionary = snapshot.value as? [String: AnyObject] else {
+                return
+            }
+            let account = Account()
+            account.id = chatPartnerID
+            account.setValuesForKeys(dictionary)
+            let chatController = ChatController(collectionViewLayout: UICollectionViewFlowLayout())
+            chatController.account = account
+            self.navigationController?.pushViewController(chatController, animated: true)
+            
+        }, withCancel: nil)
+    }
+
 }

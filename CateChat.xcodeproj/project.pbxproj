@@ -30,6 +30,7 @@
 		C67EBB3B1F1810E00058ECF6 /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67EBB3A1F1810E00058ECF6 /* NewMessageController.swift */; };
 		C67EBB3E1F1817820058ECF6 /* AccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67EBB3D1F1817820058ECF6 /* AccountCell.swift */; };
 		C6D7973E1F1BD9C50005C7BB /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D7973D1F1BD9C50005C7BB /* SettingsController.swift */; };
+		C6D797401F1D4E1C0005C7BB /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D7973F1F1D4E1C0005C7BB /* MessageCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		C67EBB3A1F1810E00058ECF6 /* NewMessageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMessageController.swift; sourceTree = "<group>"; };
 		C67EBB3D1F1817820058ECF6 /* AccountCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountCell.swift; sourceTree = "<group>"; };
 		C6D7973D1F1BD9C50005C7BB /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
+		C6D7973F1F1D4E1C0005C7BB /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				C67EBB3D1F1817820058ECF6 /* AccountCell.swift */,
+				C6D7973F1F1D4E1C0005C7BB /* MessageCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -326,6 +329,7 @@
 				C67EBB391F18036E0058ECF6 /* Account.swift in Sources */,
 				C66C31951F1B158500266652 /* Message.swift in Sources */,
 				C67EBB261F16D5BE0058ECF6 /* AccountController.swift in Sources */,
+				C6D797401F1D4E1C0005C7BB /* MessageCell.swift in Sources */,
 				C67EBB241F16D5690058ECF6 /* LoginController.swift in Sources */,
 				C67EBB0A1F16C5A60058ECF6 /* AppDelegate.swift in Sources */,
 				C67EBB221F16D55E0058ECF6 /* RegisterController.swift in Sources */,

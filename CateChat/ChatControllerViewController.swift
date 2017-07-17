@@ -9,20 +9,27 @@
 import UIKit
 import Firebase
 
-class ChatController: UICollectionViewController, UITextFieldDelegate {
+class ChatController: UICollectionViewController, UITextFieldDelegate, UICollectionViewDelegateFlowLayout {
 
     let ref = Database.database().reference()
+    var messages = [Message]()
+    
     var account: Account? {
         
         didSet {
             navigationItem.title = account?.name
+            observeMessages()
         }
     }
+    
+    let cellID = "cellID"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        collectionView?.alwaysBounceVertical = true
         collectionView?.backgroundColor = UIColor.white
+        collectionView?.register(MessageCell.self, forCellWithReuseIdentifier: cellID)
         
         view.addSubview(inputMessageContainer)
         view.addSubview(inputSeperator)
@@ -35,13 +42,48 @@ class ChatController: UICollectionViewController, UITextFieldDelegate {
         setupInputTextField()
     }
     
+    func observeMessages() {
+        
+        guard let uid = Auth.auth().currentUser?.uid else {
+            print("No current user")
+            return
+        }
+        
+        let userMessagesReference = Database.database().reference().child("user-messages").child(uid)
+        userMessagesReference.observe(.childAdded, with: { (snapshot) in
+            
+            let messageID = snapshot.key
+            let messageRef = Database.database().reference().child("messages").child(messageID)
+            messageRef.observeSingleEvent(of: .value, with: { (snapshot) in
+                
+                guard let dictionary = snapshot.value as? [String: AnyObject] else {
+                    print("could not get snapshot value")
+                    return
+                }
+                
+                let message = Message()
+                message.setValuesForKeys(dictionary)
+                
+                if message.chatPartnerId() == self.account?.id {
+                    self.messages.append(message)
+                    
+                    DispatchQueue.main.async {
+                        self.collectionView?.reloadData()
+                    }
+                }
+                
+            }, withCancel: nil)
+            
+        }, withCancel: nil)
+    }
+    
     func sendMessage() {
      
         let childRef = ref.child("messages").childByAutoId()
         let fromID = Auth.auth().currentUser!.uid
         let toID = account!.id!
         let timeStamp = Int(NSDate().timeIntervalSince1970)
-        let values = ["text": inputTextField.text!, "toID": account!.id!, "fromID": fromID, "timeStamp": timeStamp] as [String : Any]
+        let values = ["text": inputTextField.text!, "toID": toID, "fromID": fromID, "timeStamp": timeStamp] as [String : Any]
 //        childRef.updateChildValues(values)
         childRef.updateChildValues(values) { (error, ref) in
             if error != nil {
@@ -57,8 +99,6 @@ class ChatController: UICollectionViewController, UITextFieldDelegate {
             
             let recipientMessageRef = Database.database().reference().child("user-messages").child(toID)
             recipientMessageRef.updateChildValues([messageID: 1])
-            
-            
         }
     }
 
@@ -124,6 +164,39 @@ class ChatController: UICollectionViewController, UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         sendMessage()
         return true
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return messages.count
+    }
+    
+    // Note: To change the actual font within the chat text views, you have to change the system font in the computed view height
+    // "textViewHeight()"
+    func textViewHeight(_ text: String) -> CGRect{
+        
+        let size = CGSize(width: 200, height: 1000)
+        let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
+        
+        return NSString(string: text).boundingRect(with: size, options: options, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 16)], context: nil)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        var height: CGFloat = 100
+        
+        if let text = messages[indexPath.item].text {
+            height = textViewHeight(text).height + 20
+        }
+        return CGSize(width: view.frame.width, height: height)
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! MessageCell
+        
+        let message = messages[indexPath.row]
+        
+        cell.textView.text = message.text
+        
+        return cell
     }
     
 }
