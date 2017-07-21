@@ -70,6 +70,8 @@ extension RegisterController: UIImagePickerControllerDelegate, UINavigationContr
             
             // User uid child nodes updated
             let navController = UINavigationController(rootViewController: HomeController())
+            //let account = account(values)
+            
             self.present(navController, animated: true, completion: nil)
         })
     }

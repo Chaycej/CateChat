@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         window?.rootViewController = UINavigationController(rootViewController: HomeController())
         
-        UINavigationBar.appearance().backgroundColor = UIColor.red
+        UINavigationBar.appearance().backgroundColor = UIColor.green
         
         return true
     }

@@ -30,11 +30,17 @@ class UserMessageController: UITableViewController {
         tableView.register(AccountCell.self, forCellReuseIdentifier: cellID)
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backToHome))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "New Message", style: .plain, target: self, action: #selector(handleNewMessage))
         navigationItem.title = "Messages"
     }
     
     func backToHome() {
         dismiss(animated: true, completion: nil)
+    }
+    
+    func handleNewMessage() {
+        let navController = UINavigationController(rootViewController: NewMessageController())
+        present(navController, animated: true, completion: nil)
     }
     
     func observeUserMessages() {
@@ -56,8 +62,8 @@ class UserMessageController: UITableViewController {
                     message.setValuesForKeys(dictionary)
                     self.messages.append(message)
                     
-                    if let toID = message.toID {
-                        self.messagesDictionary[toID] = message
+                    if let chatPartnerID = message.chatPartnerId() {
+                        self.messagesDictionary[chatPartnerID] = message
                         self.messages = Array(self.messagesDictionary.values)
                         self.messages.sort(by: { (m1, m2) -> Bool in
                             return (m1.timeStamp?.intValue)! > (m2.timeStamp?.intValue)!
@@ -72,31 +78,6 @@ class UserMessageController: UITableViewController {
             
         }, withCancel: nil)
     }
-    
-    // Update model
-//    func observeMessages() {
-//        
-//        guard let uid = Auth.auth().currentUser?.uid else {
-//            print("Could not fetch a logged in user")
-//            return
-//        }
-//        
-//        ref.child("messages").observe(.childAdded, with: { (snapshot) in
-//            
-//            if let dictionary = snapshot.value as? [String: AnyObject] {
-//                let message = Message()
-//                message.setValuesForKeys(dictionary)
-//                
-//                if let toID = message.toID {
-//                    self.messagesDictionary[toID] = message
-//                    self.messages = Array(self.messagesDictionary.values)
-//                    self.messages.sort(by: { (m1, m2) -> Bool in
-//                        return (m1.timeStamp?.intValue)! > (m2.timeStamp?.intValue)!
-//                    })
-//                }
-//            }
-//        }, withCancel: nil)
-//    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return messages.count
@@ -127,7 +108,7 @@ class UserMessageController: UITableViewController {
             guard let dictionary = snapshot.value as? [String: AnyObject] else {
                 return
             }
-            let account = Account()
+            let account = Account(dictionary)
             account.id = chatPartnerID
             account.setValuesForKeys(dictionary)
             let chatController = ChatController(collectionViewLayout: UICollectionViewFlowLayout())

@@ -18,6 +18,8 @@ class HomeController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
+        checkIfUserIsLoggedIn()
+        
         view.backgroundColor = UIColor.white
         
         view.addSubview(messagesButton)
@@ -27,25 +29,21 @@ class HomeController: UIViewController {
         setupSettingsButton()
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "New Message", style: .plain, target: self, action: #selector(handleNewMessage))
-        
-        checkIfUserIsLoggedIn()
     }
     
     func viewMessages() {
         let userMessageController = UserMessageController()
-    
         let navController = UINavigationController(rootViewController: userMessageController)
         present(navController, animated: true, completion: nil)
     }
     
     func viewSettings() {
-        
-    }
-    
-    func handleNewMessage() {
-        let navController = UINavigationController(rootViewController: NewMessageController())
-        present(navController, animated: true, completion: nil)
+        let settingsController = SettingsController()
+        print("View Message \(account?.name)")
+        print(account?.id)
+        settingsController.account = account
+        print(settingsController.account?.id)
+        self.navigationController?.pushViewController(settingsController, animated: true)
     }
     
     func handleLogout() {
@@ -60,36 +58,38 @@ class HomeController: UIViewController {
         present(accountController, animated: true, completion: nil)
     }
     
-    func getUser() {
-        
-        guard let uid = Auth.auth().currentUser?.uid else{
-            print("Could not retrieve user")
-            return
-        }
-        ref.child("users").child(uid).observe(.value, with: { (snapshot) in
-            
-            if (snapshot.value as? [String: AnyObject]) != nil {
-                let user = Account()
-                self.navigationItem.title = user.name
-            }
-        } , withCancel: nil)
-    }
+//    func getUser() {
+//        
+//        guard let uid = Auth.auth().currentUser?.uid else{
+//            print("Could not retrieve user")
+//            return
+//        }
+//        ref.child("users").child(uid).observe(.value, with: { (snapshot) in
+//            
+//            if (snapshot.value as? [String: AnyObject]) != nil {
+//                let user = Account()
+//                self.navigationItem.title = user.name
+//            }
+//        } , withCancel: nil)
+//    }
 
     
     func checkIfUserIsLoggedIn() {
         
-        if Auth.auth().currentUser?.uid == nil {
+        guard let uid = Auth.auth().currentUser?.uid else {
             perform(#selector(handleLogout), with: nil, afterDelay: 0)
-        } else {
-            let uid = Auth.auth().currentUser?.uid
-            ref.child("users").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
-                
-                if let dictionary = snapshot.value as? [String: AnyObject] {
-                    self.navigationItem.title = dictionary["name"] as? String
-                }
-                
-            }, withCancel: nil)
+            return
         }
+        ref.child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                
+            if let dictionary = snapshot.value as? [String: AnyObject] {
+                self.account = Account(dictionary)
+                self.account?.setValuesForKeys(dictionary)
+                self.account?.id = uid
+                self.navigationItem.title = dictionary["name"] as? String
+            }
+            
+        }, withCancel: nil)
     }
     
     let messagesButton: UIButton = {
@@ -102,7 +102,7 @@ class HomeController: UIViewController {
         button.titleLabel?.textAlignment = .center
         button.contentVerticalAlignment = UIControlContentVerticalAlignment.top
         button.contentHorizontalAlignment = UIControlContentHorizontalAlignment.center
-        button.backgroundColor = UIColor(r: 46, g: 80, b: 119)
+        button.backgroundColor = UIColor(r: 150, g: 232, b: 188)
         button.layer.cornerRadius = 5
         button.layer.masksToBounds = true
         button.addTarget(self, action: #selector(viewMessages), for: .touchUpInside)
@@ -119,7 +119,7 @@ class HomeController: UIViewController {
         button.titleLabel?.textAlignment = .center
         button.contentVerticalAlignment = UIControlContentVerticalAlignment.top
         button.contentHorizontalAlignment = UIControlContentHorizontalAlignment.center
-        button.backgroundColor = UIColor(r: 124, g: 144, b: 160)
+        button.backgroundColor = UIColor(r: 75, g: 127, b: 82)
         button.layer.cornerRadius = 5
         button.layer.masksToBounds = true
         button.addTarget(self, action: #selector(viewSettings), for: .touchUpInside)

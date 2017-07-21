@@ -29,7 +29,7 @@ extension LoginController {
             }
             
             // logged in
-            self.homeController?.getUser()
+//            self.homeController?.getUser()
             let navController = UINavigationController(rootViewController: HomeController())
             self.present(navController, animated: true, completion: nil)
         })

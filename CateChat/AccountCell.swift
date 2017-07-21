@@ -13,6 +13,7 @@ class AccountCell: UITableViewCell {
 
     var ref = Database.database().reference()
     var message: Message? {
+        
         didSet {
             setupNameAndProfileImage()
             detailTextLabel?.text = message?.text
@@ -91,7 +92,7 @@ class AccountCell: UITableViewCell {
     
     func setupTimeLabel() {
         timeLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -12).isActive = true
-        timeLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+        timeLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: -12).isActive = true
         timeLabel.widthAnchor.constraint(equalToConstant: 50).isActive = true
         timeLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
     }

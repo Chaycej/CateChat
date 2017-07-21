@@ -24,12 +24,20 @@ class ChatController: UICollectionViewController, UITextFieldDelegate, UICollect
     
     let cellID = "cellID"
     
+    // Mark: ViewController lifeycle ------------------------------------------
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         collectionView?.alwaysBounceVertical = true
         collectionView?.backgroundColor = UIColor.white
         collectionView?.register(MessageCell.self, forCellWithReuseIdentifier: cellID)
+        collectionView?.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 58, right: 0)
+        collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 50, right: 0)
+        collectionView?.keyboardDismissMode = .interactive
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(backgroundTapped))
+        view.addGestureRecognizer(tapGesture)
         
         view.addSubview(inputMessageContainer)
         view.addSubview(inputSeperator)
@@ -40,6 +48,17 @@ class ChatController: UICollectionViewController, UITextFieldDelegate, UICollect
         setupInputSeperator()
         setupSendButton()
         setupInputTextField()
+        
+        setupkeyboard()
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        collectionView?.collectionViewLayout.invalidateLayout()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(true)
+        NotificationCenter.default.removeObserver(self)
     }
     
     func observeMessages() {
@@ -66,42 +85,40 @@ class ChatController: UICollectionViewController, UITextFieldDelegate, UICollect
                 
                 if message.chatPartnerId() == self.account?.id {
                     self.messages.append(message)
-                    
-                    DispatchQueue.main.async {
-                        self.collectionView?.reloadData()
-                    }
                 }
-                
+                DispatchQueue.main.async {
+                    self.collectionView?.reloadData()
+                }
             }, withCancel: nil)
-            
         }, withCancel: nil)
     }
     
     func sendMessage() {
-     
+        if inputTextField.text == "" {
+            return
+        }
+        
         let childRef = ref.child("messages").childByAutoId()
         let fromID = Auth.auth().currentUser!.uid
         let toID = account!.id!
         let timeStamp = Int(NSDate().timeIntervalSince1970)
         let values = ["text": inputTextField.text!, "toID": toID, "fromID": fromID, "timeStamp": timeStamp] as [String : Any]
-//        childRef.updateChildValues(values)
         childRef.updateChildValues(values) { (error, ref) in
             if error != nil {
                 print(error!)
                 return
             }
-            
             self.inputTextField.text = nil
-            
             let userMessagesRef = Database.database().reference().child("user-messages").child(fromID)
             let messageID = childRef.key
             userMessagesRef.updateChildValues([messageID: 1])
             
-            let recipientMessageRef = Database.database().reference().child("user-messages").child(toID)
-            recipientMessageRef.updateChildValues([messageID: 1])
+            Database.database().reference().child("user-messages").child(toID).updateChildValues([messageID: 1])
         }
     }
-
+    
+    // Mark: Views
+    
     let inputMessageContainer: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -119,7 +136,7 @@ class ChatController: UICollectionViewController, UITextFieldDelegate, UICollect
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Send", for: UIControlState())
-        button.setTitleColor(UIColor.red, for: UIControlState())
+        button.setTitleColor(UIColor.init(r: 150, g: 232, b: 188), for: UIControlState())
         button.backgroundColor = UIColor.white
         button.addTarget(self, action: #selector(sendMessage), for: .touchUpInside)
         return button
@@ -127,15 +144,20 @@ class ChatController: UICollectionViewController, UITextFieldDelegate, UICollect
     
     lazy var inputTextField: UITextField = {
         let tf = UITextField()
-        tf.delegate = self
         tf.translatesAutoresizingMaskIntoConstraints = false
+        tf.delegate = self
         tf.placeholder = "Enter a message..."
         return tf
     }()
     
+    // Mark: View Constraints (x, y, width, height)
+    
+    var inputMessageContainerBottomAnchor: NSLayoutConstraint?
+    
     func setupInputMessageContainer() {
         inputMessageContainer.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        inputMessageContainer.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        inputMessageContainerBottomAnchor = inputMessageContainer.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        inputMessageContainerBottomAnchor?.isActive = true
         inputMessageContainer.widthAnchor.constraint(equalToConstant: view.bounds.width).isActive = true
         inputMessageContainer.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
@@ -161,23 +183,14 @@ class ChatController: UICollectionViewController, UITextFieldDelegate, UICollect
         inputTextField.heightAnchor.constraint(equalTo: inputMessageContainer.heightAnchor).isActive = true
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        sendMessage()
-        return true
+    // Mark: CollectionView functions
+    
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return messages.count
-    }
-    
-    // Note: To change the actual font within the chat text views, you have to change the system font in the computed view height
-    // "textViewHeight()"
-    func textViewHeight(_ text: String) -> CGRect{
-        
-        let size = CGSize(width: 200, height: 1000)
-        let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
-        
-        return NSString(string: text).boundingRect(with: size, options: options, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 16)], context: nil)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -186,8 +199,20 @@ class ChatController: UICollectionViewController, UITextFieldDelegate, UICollect
         if let text = messages[indexPath.item].text {
             height = textViewHeight(text).height + 20
         }
+        
+        
         return CGSize(width: view.frame.width, height: height)
     }
+    
+    func textViewHeight(_ text: String) -> CGRect{
+        
+        let size = CGSize(width: 200, height: 1000)
+        let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
+        
+        return NSString(string: text).boundingRect(with: size, options: options, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 16)], context: nil)
+    }
+
+    
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! MessageCell
@@ -196,7 +221,56 @@ class ChatController: UICollectionViewController, UITextFieldDelegate, UICollect
         
         cell.textView.text = message.text
         
+        if message.fromID == Auth.auth().currentUser?.uid {
+            cell.backgroundTextView.backgroundColor = UIColor(r: 150, g: 232, b: 188)
+            cell.backgroundLeftAnchor?.isActive = false
+            cell.backgroundRightAnchor?.isActive = true
+        } else {
+            cell.backgroundTextView.backgroundColor = UIColor(r: 200, g: 200, b: 200)
+            cell.backgroundRightAnchor?.isActive = false
+            cell.backgroundLeftAnchor?.isActive = true
+        }
+        
+        cell.backgroundWidthAnchor?.constant = textViewHeight(message.text!).width + 20
+        
+        if messages.count > 0 {
+            let indexPath = IndexPath(item: self.messages.count - 1, section: 0)
+            self.collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: false)
+        }
+        
         return cell
     }
+    
+    // Mark: Keyboard functions
+    
+    func setupkeyboard() {
+        NotificationCenter.default.addObserver(self, selector: #selector(adjustKeyboard), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(adjustKeyboard), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    func adjustKeyboard(notification: Notification) {
+        if let keyboardFrame = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue {
+            
+            if notification.name == Notification.Name.UIKeyboardWillShow {
+                inputMessageContainerBottomAnchor?.constant = -1 * keyboardFrame.height
+                UIView.animate(withDuration: 0, animations: {
+                    self.view.layoutIfNeeded()
+                }, completion: { (complete) in
+                    
+                    if self.messages.count > 0 {
+                        let indexPath = IndexPath(item: self.messages.count - 1, section: 0)
+                        self.collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: false)
+                    }
+                })
+            } else {
+                inputMessageContainerBottomAnchor?.constant = 0
+            }
+        }
+    }
+    
+    func backgroundTapped() {
+        view.endEditing(true)
+    }
+    
     
 }

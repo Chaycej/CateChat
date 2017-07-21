@@ -38,22 +38,30 @@ class MessageCell: UICollectionViewCell {
     let backgroundTextView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor(r: 232, g: 95, b: 92)
+        view.backgroundColor = UIColor(r: 150, g: 232, b: 188)
         view.layer.cornerRadius = 5
         return view
     }()
     
     func setupTextView() {
-        textView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -2).isActive = true
+        textView.leftAnchor.constraint(equalTo: backgroundTextView.leftAnchor, constant: 4).isActive = true
         textView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         textView.widthAnchor.constraint(equalToConstant: 200).isActive = true
         textView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
     }
     
+    var backgroundWidthAnchor: NSLayoutConstraint?
+    var backgroundRightAnchor: NSLayoutConstraint?
+    var backgroundLeftAnchor: NSLayoutConstraint?
+    
     func setupBackgroundTextView() {
-        backgroundTextView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -2).isActive = true
         backgroundTextView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        backgroundTextView.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        backgroundRightAnchor = backgroundTextView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -2)
+        backgroundRightAnchor?.isActive = false
+        backgroundLeftAnchor = backgroundTextView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 2)
+        backgroundLeftAnchor?.isActive = false
+        backgroundWidthAnchor = backgroundTextView.widthAnchor.constraint(equalToConstant: 200)
+        backgroundWidthAnchor?.isActive = true
         backgroundTextView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
 
     }
