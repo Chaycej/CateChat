@@ -32,13 +32,14 @@ class MessageCell: UICollectionViewCell {
         view.font = UIFont.systemFont(ofSize: 16)
         view.backgroundColor = UIColor.clear
         view.textColor = UIColor.white
+        view.isEditable = false
         return view
     }()
     
     let backgroundTextView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor(r: 150, g: 232, b: 188)
+        // Set background color in the controller based on chat ID
         view.layer.cornerRadius = 5
         return view
     }()
@@ -47,7 +48,7 @@ class MessageCell: UICollectionViewCell {
         textView.leftAnchor.constraint(equalTo: backgroundTextView.leftAnchor, constant: 4).isActive = true
         textView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         textView.widthAnchor.constraint(equalToConstant: 200).isActive = true
-        textView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
+        textView.heightAnchor.constraint(equalTo: self.heightAnchor, constant: 10).isActive = true
     }
     
     var backgroundWidthAnchor: NSLayoutConstraint?

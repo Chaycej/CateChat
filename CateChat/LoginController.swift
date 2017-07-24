@@ -13,6 +13,8 @@ class LoginController: UIViewController {
 
     var homeController: HomeController?
     var ref = Database.database().reference()
+    var keyboardAdjusted = false
+    var lastKeyboardOffset: CGFloat = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,14 +25,14 @@ class LoginController: UIViewController {
         view.addSubview(emailTextField)
         view.addSubview(passwordNameTextField)
         view.addSubview(signInButton)
-        view.addSubview(forgotPasswordButton)
         
-        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(backgroundTapped))
+        view.addGestureRecognizer(tapGesture)
+
         setupcancelButton()
         setupEmailTextField()
         setupPasswordTextField()
         setupSignInButton()
-        setupForgotPasswordButton()
     }
     
     override var prefersStatusBarHidden: Bool {
@@ -39,13 +41,17 @@ class LoginController: UIViewController {
         }
     }
     
+    func backgroundTapped() {
+        view.endEditing(true)
+    }
+    
     let cancelButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Cancel", for: UIControlState())
         button.titleLabel?.font = UIFont.systemFont(ofSize: 20)
         button.titleLabel?.adjustsFontSizeToFitWidth = true
-        button.setTitleColor(UIColor(r: 142, g: 68, b: 61), for: UIControlState())
+        button.setTitleColor(UIColor(r: 123, g: 158, b: 168), for: UIControlState())
         button.backgroundColor = UIColor.white
         button.addTarget(self, action: #selector(cancelSignIn), for: .touchUpInside)
         return button
@@ -75,21 +81,11 @@ class LoginController: UIViewController {
     lazy var signInButton: UIButton  = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = UIColor(r: 142, g: 68, b: 61)
+        button.backgroundColor = UIColor(r: 123, g: 158, b: 168)
         button.setTitle("Sign In", for: UIControlState())
         button.setTitleColor(UIColor.white, for: UIControlState())
         button.addTarget(self, action: #selector(signInUser), for: .touchUpInside)
         button.layer.cornerRadius = 5
-        return button
-    }()
-    
-    lazy var forgotPasswordButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = UIColor.white
-        button.setTitle("Forgot Password?", for: UIControlState())
-        button.setTitleColor(UIColor.black, for: UIControlState())
-        button.addTarget(self, action: #selector(forgotPassword), for: .touchUpInside)
         return button
     }()
     
@@ -120,12 +116,4 @@ class LoginController: UIViewController {
         signInButton.widthAnchor.constraint(equalToConstant: view.bounds.width/2).isActive = true
         signInButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
-    
-    func setupForgotPasswordButton() {
-        forgotPasswordButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        forgotPasswordButton.topAnchor.constraint(equalTo: signInButton.bottomAnchor, constant: 30).isActive = true
-        forgotPasswordButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        forgotPasswordButton.widthAnchor.constraint(equalToConstant: view.bounds.width/2).isActive = true
-    }
-    
 }

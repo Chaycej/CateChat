@@ -17,14 +17,14 @@ class AccountController: UIViewController {
         
         view.addSubview(logoImage)
         view.addSubview(loginButton)
+        view.addSubview(buttonSeperator)
         view.addSubview(registerButton)
         
         setupLogoImage()
         setupLoginButton()
+        setupButtonSeperator()
         setupRegisterButton()
     }
-    
-    
     
     lazy var logoImage: UIImageView = {
         let imageView = UIImageView()
@@ -33,30 +33,33 @@ class AccountController: UIViewController {
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
-    
-    // Log In button
+
     lazy var loginButton: UIButton = {
         let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Log In", for: UIControlState())
         button.setTitleColor(UIColor.white, for: UIControlState())
         button.titleLabel?.font = UIFont(name: "plain", size: 30)
-        button.backgroundColor = UIColor(r: 142, g: 68, b: 61)
+        button.backgroundColor = UIColor(r: 123, g: 158, b: 168)
         button.addTarget(self, action: #selector(presentLoginController), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.layer.cornerRadius = 5
         return button
     }()
     
-    // Register Button
+    lazy var buttonSeperator: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.gray
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     lazy var registerButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Sign Up", for: UIControlState())
         button.setTitleColor(UIColor.white, for: UIControlState())
         button.titleLabel?.font = UIFont(name: "plain", size: 30)
-        button.backgroundColor = UIColor(r: 161, g: 181, b: 216)
+        button.backgroundColor = UIColor(r: 0, g: 52, b: 89)
         button.addTarget(self, action: #selector(presentRegisterController), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.layer.cornerRadius = 5
         return button
     }()
     
@@ -69,18 +72,23 @@ class AccountController: UIViewController {
     
     func setupLoginButton() {
         loginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        loginButton.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        loginButton.widthAnchor.constraint(equalToConstant: view.bounds.width/2).isActive = true
+        loginButton.bottomAnchor.constraint(equalTo: buttonSeperator.topAnchor).isActive = true
+        loginButton.widthAnchor.constraint(equalToConstant: view.bounds.width).isActive = true
         loginButton.heightAnchor.constraint(equalToConstant: view.bounds.height/8).isActive = true
+    }
+    
+    func setupButtonSeperator() {
+        buttonSeperator.bottomAnchor.constraint(equalTo: registerButton.topAnchor).isActive = true
+        buttonSeperator.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        buttonSeperator.widthAnchor.constraint(equalToConstant: view.bounds.width).isActive = true
+        buttonSeperator.heightAnchor.constraint(equalToConstant: 1).isActive = true
     }
     
     func setupRegisterButton() {
         registerButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        registerButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 30).isActive = true
-        registerButton.widthAnchor.constraint(equalToConstant: view.bounds.width/2).isActive = true
+        registerButton.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        registerButton.widthAnchor.constraint(equalToConstant: view.bounds.width).isActive = true
         registerButton.heightAnchor.constraint(equalToConstant: view.bounds.height/8).isActive = true
     }
-
-
 
 }

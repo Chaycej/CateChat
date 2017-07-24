@@ -63,12 +63,12 @@ class ChatController: UICollectionViewController, UITextFieldDelegate, UICollect
     
     func observeMessages() {
         
-        guard let uid = Auth.auth().currentUser?.uid else {
+        guard let uid = Auth.auth().currentUser?.uid, let toID = account?.id else {
             print("No current user")
             return
         }
         
-        let userMessagesReference = Database.database().reference().child("user-messages").child(uid)
+        let userMessagesReference = Database.database().reference().child("user-messages").child(uid).child(toID)
         userMessagesReference.observe(.childAdded, with: { (snapshot) in
             
             let messageID = snapshot.key
@@ -82,13 +82,13 @@ class ChatController: UICollectionViewController, UITextFieldDelegate, UICollect
                 
                 let message = Message()
                 message.setValuesForKeys(dictionary)
-                
-                if message.chatPartnerId() == self.account?.id {
-                    self.messages.append(message)
-                }
-                DispatchQueue.main.async {
+                self.messages.append(message)
+                DispatchQueue.main.async(execute: {
                     self.collectionView?.reloadData()
-                }
+                    //scroll to the last index
+                    let indexPath = IndexPath(item: self.messages.count - 1, section: 0)
+                    self.collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
+                })
             }, withCancel: nil)
         }, withCancel: nil)
     }
@@ -110,10 +110,15 @@ class ChatController: UICollectionViewController, UITextFieldDelegate, UICollect
             }
             self.inputTextField.text = nil
             let userMessagesRef = Database.database().reference().child("user-messages").child(fromID)
+            .child(toID)
             let messageID = childRef.key
             userMessagesRef.updateChildValues([messageID: 1])
             
-            Database.database().reference().child("user-messages").child(toID).updateChildValues([messageID: 1])
+            Database.database().reference().child("user-messages").child(toID).child(fromID).updateChildValues([messageID: 1])
+        }
+        if messages.count > 0 {
+            let indexPath = IndexPath(item: self.messages.count - 1, section: 0)
+            self.collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: false)
         }
     }
     
@@ -136,7 +141,7 @@ class ChatController: UICollectionViewController, UITextFieldDelegate, UICollect
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Send", for: UIControlState())
-        button.setTitleColor(UIColor.init(r: 150, g: 232, b: 188), for: UIControlState())
+        button.setTitleColor(UIColor(r: 29, g: 78, b: 137), for: UIControlState())
         button.backgroundColor = UIColor.white
         button.addTarget(self, action: #selector(sendMessage), for: .touchUpInside)
         return button
@@ -211,8 +216,6 @@ class ChatController: UICollectionViewController, UITextFieldDelegate, UICollect
         
         return NSString(string: text).boundingRect(with: size, options: options, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 16)], context: nil)
     }
-
-    
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! MessageCell
@@ -222,7 +225,7 @@ class ChatController: UICollectionViewController, UITextFieldDelegate, UICollect
         cell.textView.text = message.text
         
         if message.fromID == Auth.auth().currentUser?.uid {
-            cell.backgroundTextView.backgroundColor = UIColor(r: 150, g: 232, b: 188)
+            cell.backgroundTextView.backgroundColor = UIColor(r: 29, g: 78, b: 137)
             cell.backgroundLeftAnchor?.isActive = false
             cell.backgroundRightAnchor?.isActive = true
         } else {
@@ -237,7 +240,6 @@ class ChatController: UICollectionViewController, UITextFieldDelegate, UICollect
             let indexPath = IndexPath(item: self.messages.count - 1, section: 0)
             self.collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: false)
         }
-        
         return cell
     }
     
@@ -271,6 +273,4 @@ class ChatController: UICollectionViewController, UITextFieldDelegate, UICollect
     func backgroundTapped() {
         view.endEditing(true)
     }
-    
-    
 }

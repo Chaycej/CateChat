@@ -29,6 +29,8 @@ class UserMessageController: UITableViewController {
         tableView.dataSource = self
         tableView.register(AccountCell.self, forCellReuseIdentifier: cellID)
         
+        tableView.allowsSelectionDuringEditing = true
+        
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backToHome))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "New Message", style: .plain, target: self, action: #selector(handleNewMessage))
         navigationItem.title = "Messages"
@@ -45,37 +47,59 @@ class UserMessageController: UITableViewController {
     
     func observeUserMessages() {
         
-        guard let userID = Auth.auth().currentUser?.uid else {
+        guard let uid = Auth.auth().currentUser?.uid else {
             print("No user logged in ---observeUserMessage()")
             return
         }
-        let ref = Database.database().reference().child("user-messages").child(userID)
+        let ref = Database.database().reference().child("user-messages").child(uid)
         ref.observe(.childAdded, with: { (snapshot) in
             
-            let messageId = snapshot.key
-            let messageReference = Database.database().reference().child("messages").child(messageId)
+            let userID = snapshot.key
+            let messageReference = Database.database().reference().child("user-messages").child(uid).child(userID)
+            messageReference.observe(.childAdded, with: { (snapshot) in
             
-            messageReference.observeSingleEvent(of: .value, with: { (snapshot) in
+                let messageID = snapshot.key
+                self.getMessage(messageID)
                 
-                if let dictionary = snapshot.value as? [String: AnyObject] {
-                    let message = Message()
-                    message.setValuesForKeys(dictionary)
-                    self.messages.append(message)
-                    
-                    if let chatPartnerID = message.chatPartnerId() {
-                        self.messagesDictionary[chatPartnerID] = message
-                        self.messages = Array(self.messagesDictionary.values)
-                        self.messages.sort(by: { (m1, m2) -> Bool in
-                            return (m1.timeStamp?.intValue)! > (m2.timeStamp?.intValue)!
-                        })
-                    }
-                    
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                    }
-                }
             }, withCancel: nil)
+        }, withCancel: nil)
+        
+        ref.observe(.childRemoved, with: { (snapshot) in
             
+            self.messagesDictionary.removeValue(forKey: snapshot.key)
+            
+            self.messages = Array(self.messagesDictionary.values)
+            self.messages.sort(by: {(m1, m2) -> Bool in
+                return (m1.timeStamp?.intValue)! > (m2.timeStamp?.intValue)!
+            })
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }, withCancel: nil)
+    }
+    
+    func getMessage(_ messageID: String) {
+        let messageReference = Database.database().reference().child("messages").child(messageID)
+        messageReference.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let dictionary = snapshot.value as? [String: AnyObject] {
+                let message = Message()
+                message.setValuesForKeys(dictionary)
+                self.messages.append(message)
+                
+                if let chatPartnerId = message.chatPartnerId() {
+                    self.messagesDictionary[chatPartnerId] = message
+                    self.messages = Array(self.messagesDictionary.values)
+                    self.messages.sort(by: {(m1, m2) -> Bool in
+                        return (m1.timeStamp?.intValue)! > (m2.timeStamp?.intValue)!
+                    })
+                }
+                
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
         }, withCancel: nil)
     }
     
@@ -117,5 +141,30 @@ class UserMessageController: UITableViewController {
             
         }, withCancel: nil)
     }
-
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+        guard let uid = Auth.auth().currentUser?.uid else {
+            return
+        }
+        
+        let message = self.messages[indexPath.row]
+        
+        Database.database().reference().child("user-messages").child(uid).child(message.chatPartnerId()!).removeValue { (error, ref) in
+            
+            if error != nil {
+                print(error!)
+            }
+            
+            self.messagesDictionary.removeValue(forKey: message.chatPartnerId()!)
+            self.messages = Array(self.messagesDictionary.values)
+            self.messages.sort(by: { (m1, m2) -> Bool in
+                return (m1.timeStamp?.int32Value)! > (m2.timeStamp?.int32Value)!
+            })
+        }
+    }
 }

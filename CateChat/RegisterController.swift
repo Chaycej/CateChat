@@ -26,6 +26,9 @@ class RegisterController: UIViewController {
         view.addSubview(passwordNameTextField)
         view.addSubview(registerButton)
         
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(backgroundTapped))
+        view.addGestureRecognizer(tapGesture)
+        
         setupProfileImageView()
         setupProfileImageLabel()
         setupcancelButton()
@@ -39,6 +42,10 @@ class RegisterController: UIViewController {
         get {
             return true
         }
+    }
+    
+    func backgroundTapped() {
+        view.endEditing(true)
     }
 
     lazy var profileImageView: UIImageView = {
@@ -108,7 +115,7 @@ class RegisterController: UIViewController {
     lazy var registerButton: UIButton  = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = UIColor(r: 161, g: 181, b: 216)
+        button.backgroundColor = UIColor(r: 0, g: 52, b: 89)
         button.setTitle("Register", for: UIControlState())
         button.setTitleColor(UIColor.white, for: UIControlState())
         button.addTarget(self, action: #selector(registerUser), for: .touchUpInside)
@@ -164,5 +171,4 @@ class RegisterController: UIViewController {
         registerButton.widthAnchor.constraint(equalToConstant: view.bounds.width/2).isActive = true
         registerButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
-    
 }

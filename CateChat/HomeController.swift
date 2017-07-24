@@ -13,7 +13,11 @@ class HomeController: UIViewController {
 
     var ref = Database.database().reference()
     
-    var account: Account?
+    var account: Account? {
+        didSet {
+            navigationItem.title = account?.name
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,11 +43,9 @@ class HomeController: UIViewController {
     
     func viewSettings() {
         let settingsController = SettingsController()
-        print("View Message \(account?.name)")
-        print(account?.id)
         settingsController.account = account
-        print(settingsController.account?.id)
-        self.navigationController?.pushViewController(settingsController, animated: true)
+        let navController = UINavigationController(rootViewController: settingsController)
+        present(navController, animated: true, completion: nil)
     }
     
     func handleLogout() {
@@ -57,23 +59,7 @@ class HomeController: UIViewController {
         let accountController = AccountController()
         present(accountController, animated: true, completion: nil)
     }
-    
-//    func getUser() {
-//        
-//        guard let uid = Auth.auth().currentUser?.uid else{
-//            print("Could not retrieve user")
-//            return
-//        }
-//        ref.child("users").child(uid).observe(.value, with: { (snapshot) in
-//            
-//            if (snapshot.value as? [String: AnyObject]) != nil {
-//                let user = Account()
-//                self.navigationItem.title = user.name
-//            }
-//        } , withCancel: nil)
-//    }
 
-    
     func checkIfUserIsLoggedIn() {
         
         guard let uid = Auth.auth().currentUser?.uid else {
@@ -102,7 +88,7 @@ class HomeController: UIViewController {
         button.titleLabel?.textAlignment = .center
         button.contentVerticalAlignment = UIControlContentVerticalAlignment.top
         button.contentHorizontalAlignment = UIControlContentHorizontalAlignment.center
-        button.backgroundColor = UIColor(r: 150, g: 232, b: 188)
+        button.backgroundColor = UIColor(r: 28, g: 93, b: 153)
         button.layer.cornerRadius = 5
         button.layer.masksToBounds = true
         button.addTarget(self, action: #selector(viewMessages), for: .touchUpInside)
@@ -119,7 +105,7 @@ class HomeController: UIViewController {
         button.titleLabel?.textAlignment = .center
         button.contentVerticalAlignment = UIControlContentVerticalAlignment.top
         button.contentHorizontalAlignment = UIControlContentHorizontalAlignment.center
-        button.backgroundColor = UIColor(r: 75, g: 127, b: 82)
+        button.backgroundColor = UIColor(r: 0, g: 52, b: 89)
         button.layer.cornerRadius = 5
         button.layer.masksToBounds = true
         button.addTarget(self, action: #selector(viewSettings), for: .touchUpInside)
