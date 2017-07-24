@@ -16,7 +16,6 @@ class SettingsController: UIViewController {
         didSet {
             usernameTextField.placeholder = account?.name
         }
-        
     }
     
     override func viewDidLoad() {

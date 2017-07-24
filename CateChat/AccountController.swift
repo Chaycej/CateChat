@@ -90,5 +90,4 @@ class AccountController: UIViewController {
         registerButton.widthAnchor.constraint(equalToConstant: view.bounds.width).isActive = true
         registerButton.heightAnchor.constraint(equalToConstant: view.bounds.height/8).isActive = true
     }
-
 }

@@ -94,6 +94,7 @@ class ChatController: UICollectionViewController, UITextFieldDelegate, UICollect
     }
     
     func sendMessage() {
+        
         if inputTextField.text == "" {
             return
         }

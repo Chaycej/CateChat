@@ -125,5 +125,4 @@ class HomeController: UIViewController {
         settingsButton.widthAnchor.constraint(equalToConstant: view.bounds.width/2 - 10).isActive = true
         settingsButton.heightAnchor.constraint(equalToConstant: view.bounds.height/4).isActive = true
     }
-
 }

@@ -16,13 +16,6 @@ class Message: NSObject {
     var timeStamp: NSNumber?
     var toID: String?
     
-//    init(dictionary: [String: Any]) {
-//        self.fromID = dictionary["fromID"] as? String
-//        self.text = dictionary["text"] as? String
-//        self.timeStamp = dictionary["time"] as? NSNumber
-//        self.toID = dictionary["toID"] as? String
-//    }
-    
     func chatPartnerId() -> String? {
         if fromID == Auth.auth().currentUser?.uid {
             return toID!

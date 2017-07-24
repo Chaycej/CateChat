@@ -27,7 +27,6 @@ class NewMessageController: UITableViewController {
         fetchUser()
     }
   
-    
     func cancelMessage() {
         dismiss(animated: true, completion: nil)
     }

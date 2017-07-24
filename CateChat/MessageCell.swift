@@ -64,6 +64,5 @@ class MessageCell: UICollectionViewCell {
         backgroundWidthAnchor = backgroundTextView.widthAnchor.constraint(equalToConstant: 200)
         backgroundWidthAnchor?.isActive = true
         backgroundTextView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
-
     }
 }
