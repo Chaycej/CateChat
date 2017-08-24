@@ -113,16 +113,16 @@ class HomeController: UIViewController {
     }()
     
     func setupMessagesButton() {
-        messagesButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 3).isActive = true
-        messagesButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -3).isActive = true
-        messagesButton.widthAnchor.constraint(equalToConstant: view.bounds.width/2 - 10).isActive = true
+        messagesButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        messagesButton.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        messagesButton.widthAnchor.constraint(equalToConstant: view.bounds.width/2).isActive = true
         messagesButton.heightAnchor.constraint(equalToConstant: view.bounds.height/4).isActive = true
     }
     
     func setupSettingsButton() {
-        settingsButton.leftAnchor.constraint(equalTo: messagesButton.rightAnchor, constant: 14).isActive = true
-        settingsButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -3).isActive = true
-        settingsButton.widthAnchor.constraint(equalToConstant: view.bounds.width/2 - 10).isActive = true
+        settingsButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        settingsButton.topAnchor.constraint(equalTo: messagesButton.bottomAnchor, constant: 30).isActive = true
+        settingsButton.widthAnchor.constraint(equalToConstant: view.bounds.width/2).isActive = true
         settingsButton.heightAnchor.constraint(equalToConstant: view.bounds.height/4).isActive = true
     }
 }
