@@ -52,6 +52,12 @@ class ChatController: UICollectionViewController, UITextFieldDelegate, UICollect
         setupkeyboard()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+        inputMessageContainerBottomConstant = (inputMessageContainerBottomAnchor?.constant)!
+    }
+    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         collectionView?.collectionViewLayout.invalidateLayout()
     }
@@ -87,7 +93,7 @@ class ChatController: UICollectionViewController, UITextFieldDelegate, UICollect
                     self.collectionView?.reloadData()
                     //scroll to the last index
                     let indexPath = IndexPath(item: self.messages.count - 1, section: 0)
-                    self.collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
+                    self.collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: false)
                 })
             }, withCancel: nil)
         }, withCancel: nil)
@@ -159,11 +165,14 @@ class ChatController: UICollectionViewController, UITextFieldDelegate, UICollect
     // Mark: View Constraints (x, y, width, height)
     
     var inputMessageContainerBottomAnchor: NSLayoutConstraint?
+    var inputMessageContainerTopAnchor: NSLayoutConstraint?
+    var inputMessageContainerBottomConstant: CGFloat = 0.0
     
     func setupInputMessageContainer() {
         inputMessageContainer.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         inputMessageContainerBottomAnchor = inputMessageContainer.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         inputMessageContainerBottomAnchor?.isActive = true
+        inputMessageContainerTopAnchor?.isActive = true
         inputMessageContainer.widthAnchor.constraint(equalToConstant: view.bounds.width).isActive = true
         inputMessageContainer.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
@@ -236,39 +245,44 @@ class ChatController: UICollectionViewController, UITextFieldDelegate, UICollect
         }
         
         cell.backgroundWidthAnchor?.constant = textViewHeight(message.text!).width + 20
-        
-        if messages.count > 0 {
-            let indexPath = IndexPath(item: self.messages.count - 1, section: 0)
-            self.collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: false)
-        }
+    
         return cell
     }
     
     // Mark: Keyboard functions
     
     func setupkeyboard() {
-        NotificationCenter.default.addObserver(self, selector: #selector(adjustKeyboard), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(adjustKeyboard), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
-    func adjustKeyboard(notification: Notification) {
-        if let keyboardFrame = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue {
-            
-            if notification.name == Notification.Name.UIKeyboardWillShow {
-                inputMessageContainerBottomAnchor?.constant = -1 * keyboardFrame.height
-                UIView.animate(withDuration: 0, animations: {
-                    self.view.layoutIfNeeded()
-                }, completion: { (complete) in
-                    
-                    if self.messages.count > 0 {
-                        let indexPath = IndexPath(item: self.messages.count - 1, section: 0)
-                        self.collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: false)
-                    }
-                })
-            } else {
-                inputMessageContainerBottomAnchor?.constant = 0
-            }
+    // Moves the message text field with the keyboard when it appears
+    func keyboardWillShow(notification: NSNotification) {
+        guard let userInfo = notification.userInfo else {
+            print("Could not get user info from keybaoard")
+            return
         }
+        
+        guard let keyboardSize = userInfo["UIKeyboardBoundsUserInfoKey"] as? CGRect else {
+            
+            print("Could not get keyboard size from userInfo")
+            return
+        }
+        
+        inputMessageContainerBottomAnchor?.constant = inputMessageContainerBottomConstant - keyboardSize.height
+        
+        inputMessageContainerTopAnchor?.constant = (inputMessageContainerTopAnchor?.constant)! - keyboardSize.height
+        
+        //
+        UIView.animate(withDuration: 0.1) {
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    // Moves the message text field to the bottom of the screen when the keyboard disappears
+    func keyboardWillHide(notification: NSNotification) {
+        inputMessageContainerBottomAnchor?.constant = inputMessageContainerBottomConstant
+        inputMessageContainerTopAnchor?.constant = 0
     }
     
     func backgroundTapped() {

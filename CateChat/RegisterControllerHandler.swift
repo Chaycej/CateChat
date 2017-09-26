@@ -39,8 +39,7 @@ extension RegisterController: UIImagePickerControllerDelegate, UINavigationContr
             let imageName = UUID().uuidString
             
             if let profileImage = self.profileImageView.image, let uploadData = UIImageJPEGRepresentation(profileImage, 0.1) {
-            
-                Storage.storage().reference().child("Profile Images").child("\(imageName).jpg").putData(uploadData, metadata: nil, completion: { (metaData, error) in
+                            Storage.storage().reference().child("Profile Images").child("\(imageName).jpg").putData(uploadData, metadata: nil, completion: { (metaData, error) in
                     
                     
                     
