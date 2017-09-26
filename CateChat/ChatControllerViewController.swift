@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import TKKeyboardControl
 
 class ChatController: UICollectionViewController, UITextFieldDelegate, UICollectionViewDelegateFlowLayout {
 
@@ -49,7 +50,18 @@ class ChatController: UICollectionViewController, UITextFieldDelegate, UICollect
         setupSendButton()
         setupInputTextField()
         
-        setupkeyboard()
+        //setupkeyboard()
+        self.view.keyboardTriggerOffset = inputMessageContainer.bounds.height
+        self.view.addKeyboardPanningWithFrameBasedActionHandler({ [weak self](keyboardFrameInView, opening, closing) in
+            
+            guard let weakSelf = self else {
+                return
+            }
+            
+            weakSelf.inputMessageContainer.frame.origin.y = keyboardFrameInView.origin.y - weakSelf.inputMessageContainer.frame.height
+            weakSelf.inputSeperator.frame.origin.y = keyboardFrameInView.origin.y - weakSelf.inputMessageContainer.frame.height
+            
+        }, constraintBasedActionHandler: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -64,7 +76,6 @@ class ChatController: UICollectionViewController, UITextFieldDelegate, UICollect
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(true)
-        NotificationCenter.default.removeObserver(self)
     }
     
     func observeMessages() {
@@ -179,7 +190,7 @@ class ChatController: UICollectionViewController, UITextFieldDelegate, UICollect
     
     func setupInputSeperator() {
         inputSeperator.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        inputSeperator.bottomAnchor.constraint(equalTo: inputMessageContainer.topAnchor).isActive = true
+        inputSeperator.bottomAnchor.constraint(equalTo: inputTextField.topAnchor).isActive = true
         inputSeperator.widthAnchor.constraint(equalToConstant: view.bounds.width).isActive = true
         inputSeperator.heightAnchor.constraint(equalToConstant: 1).isActive = true
     }
@@ -247,42 +258,6 @@ class ChatController: UICollectionViewController, UITextFieldDelegate, UICollect
         cell.backgroundWidthAnchor?.constant = textViewHeight(message.text!).width + 20
     
         return cell
-    }
-    
-    // Mark: Keyboard functions
-    
-    func setupkeyboard() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-    }
-    
-    // Moves the message text field with the keyboard when it appears
-    func keyboardWillShow(notification: NSNotification) {
-        guard let userInfo = notification.userInfo else {
-            print("Could not get user info from keybaoard")
-            return
-        }
-        
-        guard let keyboardSize = userInfo["UIKeyboardBoundsUserInfoKey"] as? CGRect else {
-            
-            print("Could not get keyboard size from userInfo")
-            return
-        }
-        
-        inputMessageContainerBottomAnchor?.constant = inputMessageContainerBottomConstant - keyboardSize.height
-        
-        inputMessageContainerTopAnchor?.constant = (inputMessageContainerTopAnchor?.constant)! - keyboardSize.height
-        
-        //
-        UIView.animate(withDuration: 0.1) {
-            self.view.layoutIfNeeded()
-        }
-    }
-    
-    // Moves the message text field to the bottom of the screen when the keyboard disappears
-    func keyboardWillHide(notification: NSNotification) {
-        inputMessageContainerBottomAnchor?.constant = inputMessageContainerBottomConstant
-        inputMessageContainerTopAnchor?.constant = 0
     }
     
     func backgroundTapped() {
