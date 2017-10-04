@@ -52,16 +52,16 @@ class ChatController: UICollectionViewController, UITextFieldDelegate, UICollect
         
         //setupkeyboard()
         self.view.keyboardTriggerOffset = inputMessageContainer.bounds.height
-        self.view.addKeyboardPanningWithFrameBasedActionHandler({ [weak self](keyboardFrameInView, opening, closing) in
-            
-            guard let weakSelf = self else {
-                return
-            }
-            
-            weakSelf.inputMessageContainer.frame.origin.y = keyboardFrameInView.origin.y - weakSelf.inputMessageContainer.frame.height
-            weakSelf.inputSeperator.frame.origin.y = keyboardFrameInView.origin.y - weakSelf.inputMessageContainer.frame.height
-            
-        }, constraintBasedActionHandler: nil)
+//        self.view.addKeyboardPanningWithFrameBasedActionHandler({ [weak self](keyboardFrameInView, opening, closing) in
+//
+//            guard let weakSelf = self else {
+//                return
+//            }
+//
+//            weakSelf.inputMessageContainer.frame.origin.y = keyboardFrameInView.origin.y - weakSelf.inputMessageContainer.frame.height
+//            weakSelf.inputSeperator.frame.origin.y = keyboardFrameInView.origin.y - weakSelf.inputMessageContainer.frame.height
+//
+//        }, constraintBasedActionHandler: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -74,12 +74,15 @@ class ChatController: UICollectionViewController, UITextFieldDelegate, UICollect
         collectionView?.collectionViewLayout.invalidateLayout()
     }
     
+    override func viewWillLayoutSubviews() {
+        
+    }
+    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(true)
     }
     
     func observeMessages() {
-        
         guard let uid = Auth.auth().currentUser?.uid, let toID = account?.id else {
             print("No current user")
             return
@@ -115,7 +118,6 @@ class ChatController: UICollectionViewController, UITextFieldDelegate, UICollect
         if inputTextField.text == "" {
             return
         }
-        
         let childRef = ref.child("messages").childByAutoId()
         let fromID = Auth.auth().currentUser!.uid
         let toID = account!.id!
@@ -210,7 +212,6 @@ class ChatController: UICollectionViewController, UITextFieldDelegate, UICollect
     }
     
     // Mark: CollectionView functions
-    
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -225,8 +226,6 @@ class ChatController: UICollectionViewController, UITextFieldDelegate, UICollect
         if let text = messages[indexPath.item].text {
             height = textViewHeight(text).height + 20
         }
-        
-        
         return CGSize(width: view.frame.width, height: height)
     }
     
@@ -244,7 +243,7 @@ class ChatController: UICollectionViewController, UITextFieldDelegate, UICollect
         let message = messages[indexPath.row]
         
         cell.textView.text = message.text
-        
+       
         if message.fromID == Auth.auth().currentUser?.uid {
             cell.backgroundTextView.backgroundColor = UIColor(r: 29, g: 78, b: 137)
             cell.backgroundLeftAnchor?.isActive = false

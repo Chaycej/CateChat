@@ -33,6 +33,7 @@ class MessageCell: UICollectionViewCell {
         view.backgroundColor = UIColor.clear
         view.textColor = UIColor.white
         view.isEditable = false
+        view.isScrollEnabled = false
         return view
     }()
     
@@ -46,6 +47,7 @@ class MessageCell: UICollectionViewCell {
     
     func setupTextView() {
         textView.leftAnchor.constraint(equalTo: backgroundTextView.leftAnchor, constant: 4).isActive = true
+        textView.rightAnchor.constraint(equalTo: backgroundTextView.rightAnchor, constant: -4).isActive = true
         textView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         textView.widthAnchor.constraint(equalToConstant: 200).isActive = true
         textView.heightAnchor.constraint(equalTo: self.heightAnchor, constant: 10).isActive = true
