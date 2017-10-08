@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class HomeController: UIViewController {
+class HomeViewController: UIViewController {
 
     var ref = Database.database().reference()
     
@@ -35,20 +35,20 @@ class HomeController: UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
     }
     
-    func viewMessages() {
-        let userMessageController = UserMessageController()
+    @objc func viewMessages() {
+        let userMessageController = UserMessageViewController()
         let navController = UINavigationController(rootViewController: userMessageController)
         present(navController, animated: true, completion: nil)
     }
     
-    func viewSettings() {
-        let settingsController = SettingsController()
+    @objc func viewSettings() {
+        let settingsController = SettingsViewController()
         settingsController.account = account
         let navController = UINavigationController(rootViewController: settingsController)
         present(navController, animated: true, completion: nil)
     }
     
-    func handleLogout() {
+    @objc func handleLogout() {
         
         do {
             try Auth.auth().signOut()
@@ -56,7 +56,7 @@ class HomeController: UIViewController {
             print(logoutError)
         }
         
-        let accountController = AccountController()
+        let accountController = AccountViewController()
         present(accountController, animated: true, completion: nil)
     }
 
@@ -70,7 +70,6 @@ class HomeController: UIViewController {
                 
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 self.account = Account(dictionary)
-                self.account?.setValuesForKeys(dictionary)
                 self.account?.id = uid
                 self.navigationItem.title = dictionary["name"] as? String
             }

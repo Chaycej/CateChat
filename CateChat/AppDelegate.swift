@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
-        window?.rootViewController = UINavigationController(rootViewController: HomeController())
+        window?.rootViewController = UINavigationController(rootViewController: HomeViewController())
         
         UINavigationBar.appearance().backgroundColor = UIColor(r: 0, g: 52, b: 89)
         
@@ -47,7 +47,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
        
     }
-
-
 }
-

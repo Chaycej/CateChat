@@ -9,13 +9,13 @@
 import UIKit
 import Firebase
 
-extension LoginController {
+extension LoginViewController {
     
-    func cancelSignIn() {
+    @objc func cancelSignIn() {
         dismiss(animated: true, completion: nil)
     }
     
-    func signInUser() {
+    @objc func signInUser() {
         
         guard let email = emailTextField.text, let password = passwordNameTextField.text else {
             print("email or password form is incorrect")
@@ -28,12 +28,12 @@ extension LoginController {
                 print(error!)
             }
             
-            let navController = UINavigationController(rootViewController: HomeController())
+            let navController = UINavigationController(rootViewController: HomeViewController())
             self.present(navController, animated: true, completion: nil)
         })
     }
     
-    func forgotPassword() {
+    @objc func forgotPassword() {
         
     }
 }

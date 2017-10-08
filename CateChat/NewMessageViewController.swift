@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class NewMessageController: UITableViewController {
+class NewMessageViewController: UITableViewController {
 
     var cellID = "CellID"
     var ref = Database.database().reference()
@@ -27,7 +27,7 @@ class NewMessageController: UITableViewController {
         fetchUser()
     }
   
-    func cancelMessage() {
+    @objc func cancelMessage() {
         dismiss(animated: true, completion: nil)
     }
     
@@ -51,7 +51,7 @@ class NewMessageController: UITableViewController {
 }
 
 // TableView datasource and delegate
-extension NewMessageController {
+extension NewMessageViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return accounts.count
@@ -77,7 +77,7 @@ extension NewMessageController {
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         
         let account = accounts[indexPath.row]
-        let chatController = ChatController(collectionViewLayout: UICollectionViewFlowLayout())
+        let chatController = ChatViewController(collectionViewLayout: UICollectionViewFlowLayout())
         chatController.account = account
         navigationController?.pushViewController(chatController, animated: true)
         return indexPath

@@ -9,9 +9,9 @@
 import UIKit
 import Firebase
 
-class LoginController: UIViewController {
+class LoginViewController: UIViewController {
 
-    var homeController: HomeController?
+    var homeController: HomeViewController?
     var ref = Database.database().reference()
     var keyboardAdjusted = false
     var lastKeyboardOffset: CGFloat = 0.0
@@ -41,7 +41,7 @@ class LoginController: UIViewController {
         }
     }
     
-    func backgroundTapped() {
+    @objc func backgroundTapped() {
         view.endEditing(true)
     }
     

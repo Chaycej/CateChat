@@ -41,7 +41,7 @@ class MessageCell: UICollectionViewCell {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         // Set background color in the controller based on chat ID
-        view.layer.cornerRadius = 5
+        view.layer.cornerRadius = 15
         return view
     }()
     
@@ -49,7 +49,6 @@ class MessageCell: UICollectionViewCell {
         textView.leftAnchor.constraint(equalTo: backgroundTextView.leftAnchor, constant: 4).isActive = true
         textView.rightAnchor.constraint(equalTo: backgroundTextView.rightAnchor, constant: -4).isActive = true
         textView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        textView.widthAnchor.constraint(equalToConstant: 200).isActive = true
         textView.heightAnchor.constraint(equalTo: self.heightAnchor, constant: 10).isActive = true
     }
     

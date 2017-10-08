@@ -8,15 +8,15 @@
 
 import UIKit
 
-extension AccountController {
+extension AccountViewController {
     
-    func presentLoginController() {
-        let loginController = LoginController()
+    @objc func presentLoginViewController() {
+        let loginController = LoginViewController()
         present(loginController, animated: true, completion: nil)
     }
     
-    func presentRegisterController() {
-        let registerController = RegisterController()
+    @objc func presentRegisterViewController() {
+        let registerController = RegisterViewController()
         present(registerController, animated: true, completion: nil)
     }
 }

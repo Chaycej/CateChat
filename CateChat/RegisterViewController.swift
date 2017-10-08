@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class RegisterController: UIViewController {
+class RegisterViewController: UIViewController {
 
     var ref = Database.database().reference()
     
@@ -44,7 +44,7 @@ class RegisterController: UIViewController {
         }
     }
     
-    func backgroundTapped() {
+    @objc func backgroundTapped() {
         view.endEditing(true)
     }
 
@@ -70,7 +70,7 @@ class RegisterController: UIViewController {
     }()
     
     let cancelButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Cancel", for: UIControlState())
         button.titleLabel?.font = UIFont.systemFont(ofSize: 20)

@@ -8,9 +8,9 @@
 
 import UIKit
 
-class AccountController: UIViewController {
+class AccountViewController: UIViewController {
 
-    override func viewDidLoad() {
+    @objc    override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = UIColor.white
@@ -41,7 +41,7 @@ class AccountController: UIViewController {
         button.setTitleColor(UIColor.white, for: UIControlState())
         button.titleLabel?.font = UIFont(name: "plain", size: 30)
         button.backgroundColor = UIColor(r: 123, g: 158, b: 168)
-        button.addTarget(self, action: #selector(presentLoginController), for: .touchUpInside)
+        button.addTarget(self, action: #selector(presentLoginViewController), for: .touchUpInside)
         return button
     }()
     
@@ -58,7 +58,7 @@ class AccountController: UIViewController {
         button.setTitleColor(UIColor.white, for: UIControlState())
         button.titleLabel?.font = UIFont(name: "plain", size: 30)
         button.backgroundColor = UIColor(r: 0, g: 52, b: 89)
-        button.addTarget(self, action: #selector(presentRegisterController), for: .touchUpInside)
+        button.addTarget(self, action: #selector(presentRegisterViewController), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()

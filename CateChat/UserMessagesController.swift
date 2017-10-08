@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class UserMessageController: UITableViewController {
+class UserMessageViewController: UITableViewController {
     
     var ref = Database.database().reference()
     
@@ -36,12 +36,12 @@ class UserMessageController: UITableViewController {
         navigationItem.title = "Messages"
     }
     
-    func backToHome() {
+    @objc func backToHome() {
         dismiss(animated: true, completion: nil)
     }
     
-    func handleNewMessage() {
-        let navController = UINavigationController(rootViewController: NewMessageController())
+    @objc func handleNewMessage() {
+        let navController = UINavigationController(rootViewController: NewMessageViewController())
         present(navController, animated: true, completion: nil)
     }
     
@@ -84,8 +84,7 @@ class UserMessageController: UITableViewController {
         messageReference.observeSingleEvent(of: .value, with: { (snapshot) in
             
             if let dictionary = snapshot.value as? [String: AnyObject] {
-                let message = Message()
-                message.setValuesForKeys(dictionary)
+                let message = Message(dictionary)
                 self.messages.append(message)
                 
                 if let chatPartnerId = message.chatPartnerId() {
@@ -134,8 +133,8 @@ class UserMessageController: UITableViewController {
             }
             let account = Account(dictionary)
             account.id = chatPartnerID
-            account.setValuesForKeys(dictionary)
-            let chatController = ChatController(collectionViewLayout: UICollectionViewFlowLayout())
+            
+            let chatController = ChatViewController(collectionViewLayout: UICollectionViewFlowLayout())
             chatController.account = account
             self.navigationController?.pushViewController(chatController, animated: true)
             
@@ -159,7 +158,6 @@ class UserMessageController: UITableViewController {
             if error != nil {
                 print(error!)
             }
-            
             self.messagesDictionary.removeValue(forKey: message.chatPartnerId()!)
             self.messages = Array(self.messagesDictionary.values)
             self.messages.sort(by: { (m1, m2) -> Bool in

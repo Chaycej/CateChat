@@ -9,13 +9,13 @@
 import UIKit
 import Firebase
 
-extension RegisterController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension RegisterViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    func cancelRegister() {
+    @objc func cancelRegister() {
         dismiss(animated: true, completion: nil)
     }
     
-    func registerUser() {
+    @objc func registerUser() {
         
         guard let name = userNameTextField.text, let email = emailTextField.text, let password = passwordNameTextField.text else {
             print("Incorrect name or email")
@@ -58,7 +58,7 @@ extension RegisterController: UIImagePickerControllerDelegate, UINavigationContr
     }
     
     
-    func registerUserIntoDatabase(uid: String, values: [String: AnyObject]) {
+    @objc func registerUserIntoDatabase(uid: String, values: [String: AnyObject]) {
         let childReference = self.ref.child("users").child(uid)
         childReference.updateChildValues(values, withCompletionBlock: { (error, ref) in
             
@@ -68,14 +68,14 @@ extension RegisterController: UIImagePickerControllerDelegate, UINavigationContr
             }
             
             // User uid child nodes updated
-            let navController = UINavigationController(rootViewController: HomeController())
+            let navController = UINavigationController(rootViewController: HomeViewController())
             //let account = account(values)
             
             self.present(navController, animated: true, completion: nil)
         })
     }
 
-    func handleSelectProfileImageView() {
+    @objc func handleSelectProfileImageView() {
         let picker = UIImagePickerController()
         picker.delegate = self
         picker.allowsEditing = true
@@ -83,7 +83,7 @@ extension RegisterController: UIImagePickerControllerDelegate, UINavigationContr
         present(picker, animated: true, completion: nil)
     }
     
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+    @objc func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
     

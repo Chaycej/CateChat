@@ -9,9 +9,9 @@
 import UIKit
 import Firebase
 
-class SettingsController: UIViewController {
+class SettingsViewController: UIViewController {
     
-    var homeController: HomeController?
+    var homeController: HomeViewController?
     var account: Account? {
         didSet {
             usernameTextField.placeholder = account?.name
@@ -32,7 +32,7 @@ class SettingsController: UIViewController {
         setupUsernameTextField()
         setupUpdateUsernameButton()
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(presentHomeController))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(presentHomeViewController))
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -40,14 +40,18 @@ class SettingsController: UIViewController {
         self.account = homeController?.account
     }
     
-    func presentHomeController() {
-        let homeController = HomeController()
-        homeController.account = account
-        let navController = UINavigationController(rootViewController: homeController)
-        present(navController, animated: true, completion: nil)
+    @objc func presentHomeViewController() {
+//        let homeController = HomeController()
+//        homeController.account = account
+//        let navController = UINavigationController(rootViewController: homeController)
+//        present(navController, animated: true, completion: nil)
+        if let present = presentingViewController as? HomeViewController {
+            present.account = account
+        }
+        dismiss(animated: true, completion: nil)
     }
         
-    func updateUser() {
+    @objc func updateUser() {
         print("hello")
         guard let username = usernameTextField.text, let uid = Auth.auth().currentUser?.uid else {
             print("Problem with textField")
@@ -56,7 +60,7 @@ class SettingsController: UIViewController {
         let usernameRef = Database.database().reference().child("users").child(uid)
         usernameRef.updateChildValues(["name": username])
         self.account?.name = usernameRef.child("name").key
-        presentHomeController()
+        presentHomeViewController()
     }
     
     lazy var userNameLabel: UILabel = {
