@@ -1,11 +1,3 @@
-//
-//  LoginControllerHandler.swift
-//  CateChat
-//
-//  Created by Chayce Heiberg on 7/13/17.
-//  Copyright © 2017 wsuv. All rights reserved.
-//
-
 import UIKit
 import Firebase
 
@@ -28,7 +20,7 @@ extension LoginViewController {
                 print(error!)
             }
             
-            let navController = UINavigationController(rootViewController: HomeViewController())
+            let navController = UINavigationController(rootViewController: UserMessageViewController())
             self.present(navController, animated: true, completion: nil)
         })
     }

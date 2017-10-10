@@ -1,11 +1,3 @@
-//
-//  RegisterControllerHandler.swift
-//  CateChat
-//
-//  Created by Chayce Heiberg on 7/12/17.
-//  Copyright © 2017 wsuv. All rights reserved.
-//
-
 import UIKit
 import Firebase
 
@@ -21,7 +13,6 @@ extension RegisterViewController: UIImagePickerControllerDelegate, UINavigationC
             print("Incorrect name or email")
             return
         }
-        
         Auth.auth().createUser(withEmail: email, password: password, completion: { (user: User?, error) in
             
             if error != nil {
@@ -41,8 +32,6 @@ extension RegisterViewController: UIImagePickerControllerDelegate, UINavigationC
             if let profileImage = self.profileImageView.image, let uploadData = UIImageJPEGRepresentation(profileImage, 0.1) {
                             Storage.storage().reference().child("Profile Images").child("\(imageName).jpg").putData(uploadData, metadata: nil, completion: { (metaData, error) in
                     
-                    
-                    
                     if error != nil {
                         print(error!)
                         return
@@ -57,7 +46,6 @@ extension RegisterViewController: UIImagePickerControllerDelegate, UINavigationC
         })
     }
     
-    
     @objc func registerUserIntoDatabase(uid: String, values: [String: AnyObject]) {
         let childReference = self.ref.child("users").child(uid)
         childReference.updateChildValues(values, withCompletionBlock: { (error, ref) in
@@ -68,9 +56,7 @@ extension RegisterViewController: UIImagePickerControllerDelegate, UINavigationC
             }
             
             // User uid child nodes updated
-            let navController = UINavigationController(rootViewController: HomeViewController())
-            //let account = account(values)
-            
+            let navController = UINavigationController(rootViewController: UserMessageViewController())
             self.present(navController, animated: true, completion: nil)
         })
     }
@@ -92,17 +78,13 @@ extension RegisterViewController: UIImagePickerControllerDelegate, UINavigationC
         var selectedImagePicker: UIImage?
         
         if let originalImage = info["UIImagePickerControllerOriginalImage"] as? UIImage {
-            
             selectedImagePicker = originalImage
         } else if let editedImage = info["UIimagePickerControllerEditedImage"] as? UIImage {
-            
             selectedImagePicker = editedImage
         }
         if let selectedImage = selectedImagePicker {
-            
             profileImageView.image = selectedImage
         }
-        
         dismiss(animated: true, completion: nil)
     }
 }

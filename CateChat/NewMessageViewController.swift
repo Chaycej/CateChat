@@ -33,15 +33,19 @@ class NewMessageViewController: UITableViewController {
     
     // Append users from database into model
     func fetchUser() {
+        guard let uid = Auth.auth().currentUser?.uid else {
+            print("No user signed in")
+            return
+        }
         ref.child("users").observe(.childAdded, with: { (snapshot) in
             
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 
                 let account = Account(dictionary)
                 account.id = snapshot.key
-                account.setValuesForKeys(dictionary)
-                self.accounts.append(account)
-                
+                if account.id != uid {
+                    self.accounts.append(account)
+                }
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }

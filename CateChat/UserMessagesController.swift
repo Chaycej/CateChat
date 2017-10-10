@@ -1,11 +1,3 @@
-//
-//  UserMessagesController.swift
-//  CateChat
-//
-//  Created by Chayce Heiberg on 7/15/17.
-//  Copyright © 2017 wsuv. All rights reserved.
-//
-
 import UIKit
 import Firebase
 
@@ -18,12 +10,19 @@ class UserMessageViewController: UITableViewController {
     
     var accounts = [Account]()
     
+    var account: Account? {
+        didSet {
+            navigationItem.title = account?.name
+        }
+    }
+    
     let cellID = "CellID"
         
     override func viewDidLoad() {
         super.viewDidLoad()
         
         observeUserMessages()
+        checkIfUserIsLoggedIn()
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -31,18 +30,46 @@ class UserMessageViewController: UITableViewController {
         
         tableView.allowsSelectionDuringEditing = true
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backToHome))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "New Message", style: .plain, target: self, action: #selector(handleNewMessage))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutUser))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "NewMessage"), style: .plain, target: self, action: #selector(newMessage))
+        
         navigationItem.title = "Messages"
     }
     
-    @objc func backToHome() {
-        dismiss(animated: true, completion: nil)
-    }
     
-    @objc func handleNewMessage() {
+    
+    @objc func newMessage() {
         let navController = UINavigationController(rootViewController: NewMessageViewController())
         present(navController, animated: true, completion: nil)
+    }
+    
+    func checkIfUserIsLoggedIn() {
+        
+        guard let uid = Auth.auth().currentUser?.uid else {
+            perform(#selector(logoutUser), with: nil, afterDelay: 0)
+            return
+        }
+        ref.child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let dictionary = snapshot.value as? [String: AnyObject] {
+                self.account = Account(dictionary)
+                self.account?.id = uid
+                self.navigationItem.title = dictionary["name"] as? String
+            }
+            
+        }, withCancel: nil)
+    }
+    
+    @objc func logoutUser() {
+        
+        do {
+            try Auth.auth().signOut()
+        } catch let logoutError {
+            print(logoutError)
+        }
+        
+        let accountController = AccountViewController()
+        present(accountController, animated: true, completion: nil)
     }
     
     func observeUserMessages() {

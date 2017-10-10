@@ -28,7 +28,7 @@ class AccountViewController: UIViewController {
     
     lazy var logoImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "PlorioLogo")
+        imageView.image = UIImage(named: "Logo")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
         return imageView

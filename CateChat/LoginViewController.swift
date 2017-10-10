@@ -100,14 +100,14 @@ class LoginViewController: UIViewController {
         emailTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         emailTextField.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -50).isActive = true
         emailTextField.widthAnchor.constraint(equalToConstant: 2 * view.bounds.width/3).isActive = true
-        emailTextField.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        emailTextField.heightAnchor.constraint(equalToConstant: 35).isActive = true
     }
     
     func setupPasswordTextField() {
         passwordNameTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         passwordNameTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 30).isActive = true
         passwordNameTextField.widthAnchor.constraint(equalToConstant: 2 * view.bounds.width/3).isActive = true
-        passwordNameTextField.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        passwordNameTextField.heightAnchor.constraint(equalToConstant: 35).isActive = true
     }
     
     func setupSignInButton() {
