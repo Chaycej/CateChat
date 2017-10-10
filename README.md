@@ -11,7 +11,7 @@ Each message node has a messageID, userID, text, time stamp in order to group me
 
 ![message](https://user-images.githubusercontent.com/11234867/31314323-108f39d4-abb3-11e7-990d-947d7125d479.png)
 
-# features to implement
+# Features to Implement
 - Change the input accessory view to look similar to imessage's input view
 - Fix flickering effect when users load in contact list
 - Add image messaging feature
