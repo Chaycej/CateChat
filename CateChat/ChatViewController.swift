@@ -33,18 +33,12 @@ class ChatViewController: UICollectionViewController, UITextFieldDelegate, UICol
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         collectionView?.collectionViewLayout.invalidateLayout()
-        scrollMessages()
-    }
-    
-    func scrollMessages() {
-        let collectionViewContentHeight = collectionView?.collectionViewLayout.collectionViewContentSize.height
-        self.collectionView?.scrollRectToVisible(CGRect(x: 0, y: collectionViewContentHeight! - 1, width: 1, height: 1), animated: false)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
 
-        scrollMessages()
+        scrollMessages(false)
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -119,9 +113,14 @@ class ChatViewController: UICollectionViewController, UITextFieldDelegate, UICol
     @objc func keyboardWillShow() {
         if messages.count > 0 {
             DispatchQueue.main.async {
-                self.scrollMessages()
+                self.scrollMessages(false)
             }
         }
+    }
+    
+    func scrollMessages(_ animated: Bool) {
+        let collectionViewContentHeight = collectionView?.collectionViewLayout.collectionViewContentSize.height
+        self.collectionView?.scrollRectToVisible(CGRect(x: 0, y: collectionViewContentHeight! - 1, width: 1, height: 1), animated: animated)
     }
     
     @objc func observeMessages() {
@@ -146,7 +145,7 @@ class ChatViewController: UICollectionViewController, UITextFieldDelegate, UICol
             
                 DispatchQueue.main.async {
                     self.collectionView?.reloadData()
-                    self.scrollMessages()
+                    self.scrollMessages(true)
                 }
             }, withCancel: nil)
         }, withCancel: nil)
