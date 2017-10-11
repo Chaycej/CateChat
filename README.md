@@ -18,4 +18,7 @@ Each message node has a messageID, userID, text, time stamp in order to group me
 
 # Future ideas
 - Build a neural network that allows users to draw words that recognize the text and send them as a message.
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7f3ed6e1f72fa6bbe086849478a9c2a4753e117b
