@@ -22,20 +22,31 @@ class ChatViewController: UICollectionViewController, UITextFieldDelegate, UICol
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.collectionView?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backgroundTapped)))
         
         collectionView?.alwaysBounceVertical = true
         collectionView?.backgroundColor = UIColor.white
         collectionView?.register(MessageCell.self, forCellWithReuseIdentifier: cellID)
-        collectionView?.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 2, right: 0)
+        collectionView?.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
         collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 2, right: 0)
         collectionView?.keyboardDismissMode = .interactive
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         collectionView?.collectionViewLayout.invalidateLayout()
+        scrollMessages()
     }
     
+    func scrollMessages() {
+        let collectionViewContentHeight = collectionView?.collectionViewLayout.collectionViewContentSize.height
+        self.collectionView?.scrollRectToVisible(CGRect(x: 0, y: collectionViewContentHeight! - 1, width: 1, height: 1), animated: false)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+
+        scrollMessages()
+    }
+
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(true)
         NotificationCenter.default.removeObserver(self)
@@ -108,15 +119,9 @@ class ChatViewController: UICollectionViewController, UITextFieldDelegate, UICol
     @objc func keyboardWillShow() {
         if messages.count > 0 {
             DispatchQueue.main.async {
-                let indexPath = IndexPath(item: self.messages.count - 1, section: 0)
-                self.collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
-                print(self.messages.count)
+                self.scrollMessages()
             }
         }
-    }
-    
-    @objc func backgroundTapped() {
-        inputTextField.resignFirstResponder()
     }
     
     @objc func observeMessages() {
@@ -141,8 +146,7 @@ class ChatViewController: UICollectionViewController, UITextFieldDelegate, UICol
             
                 DispatchQueue.main.async {
                     self.collectionView?.reloadData()
-                    let indexPath = IndexPath(item: self.messages.count - 1, section: 0)
-                    self.collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
+                    self.scrollMessages()
                 }
             }, withCancel: nil)
         }, withCancel: nil)

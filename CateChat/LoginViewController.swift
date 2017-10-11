@@ -1,17 +1,8 @@
-//
-//  LoginController.swift
-//  CateChat
-//
-//  Created by Chayce Heiberg on 7/12/17.
-//  Copyright © 2017 wsuv. All rights reserved.
-//
-
 import UIKit
 import Firebase
 
 class LoginViewController: UIViewController {
 
-    var homeController: HomeViewController?
     var ref = Database.database().reference()
     var keyboardAdjusted = false
     var lastKeyboardOffset: CGFloat = 0.0
