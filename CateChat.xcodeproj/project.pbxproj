@@ -8,28 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		018538B7782749E2F7CF038B /* Pods_CateChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77EEBE91E3E501C7210E8349 /* Pods_CateChat.framework */; };
-		C66C318F1F1AA6EE00266652 /* ChatControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66C318E1F1AA6EE00266652 /* ChatControllerViewController.swift */; };
+		C618F4331F8964CD00B9688D /* GoogleToolboxForMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C618F4341F8964CD00B9688D /* GoogleToolboxForMac.framework */; };
+		C618F4351F8964D400B9688D /* GTMSessionFetcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C618F4361F8964D400B9688D /* GTMSessionFetcher.framework */; };
+		C66C318F1F1AA6EE00266652 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66C318E1F1AA6EE00266652 /* ChatViewController.swift */; };
 		C66C31951F1B158500266652 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66C31941F1B158500266652 /* Message.swift */; };
 		C66C31971F1B331800266652 /* UserMessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66C31961F1B331800266652 /* UserMessagesController.swift */; };
 		C67EBB0A1F16C5A60058ECF6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67EBB091F16C5A60058ECF6 /* AppDelegate.swift */; };
 		C67EBB0F1F16C5A60058ECF6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C67EBB0D1F16C5A60058ECF6 /* Main.storyboard */; };
 		C67EBB111F16C5A60058ECF6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C67EBB101F16C5A60058ECF6 /* Assets.xcassets */; };
 		C67EBB141F16C5A60058ECF6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C67EBB121F16C5A60058ECF6 /* LaunchScreen.storyboard */; };
-		C67EBB1D1F16D4E90058ECF6 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67EBB1C1F16D4E90058ECF6 /* HomeController.swift */; };
-		C67EBB221F16D55E0058ECF6 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67EBB211F16D55E0058ECF6 /* RegisterController.swift */; };
-		C67EBB241F16D5690058ECF6 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67EBB231F16D5690058ECF6 /* LoginController.swift */; };
-		C67EBB261F16D5BE0058ECF6 /* AccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67EBB251F16D5BE0058ECF6 /* AccountController.swift */; };
-		C67EBB2A1F16D6C00058ECF6 /* GoogleToolboxForMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C67EBB291F16D6C00058ECF6 /* GoogleToolboxForMac.framework */; };
-		C67EBB2C1F16D6C30058ECF6 /* GTMSessionFetcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C67EBB2B1F16D6C30058ECF6 /* GTMSessionFetcher.framework */; };
+		C67EBB221F16D55E0058ECF6 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67EBB211F16D55E0058ECF6 /* RegisterViewController.swift */; };
+		C67EBB241F16D5690058ECF6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67EBB231F16D5690058ECF6 /* LoginViewController.swift */; };
+		C67EBB261F16D5BE0058ECF6 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67EBB251F16D5BE0058ECF6 /* AccountViewController.swift */; };
 		C67EBB2F1F16D7E80058ECF6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67EBB2E1F16D7E80058ECF6 /* Extensions.swift */; };
 		C67EBB311F16D8A30058ECF6 /* AccountControllerHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67EBB301F16D8A30058ECF6 /* AccountControllerHandler.swift */; };
 		C67EBB331F16DB620058ECF6 /* RegisterControllerHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67EBB321F16DB620058ECF6 /* RegisterControllerHandler.swift */; };
 		C67EBB351F17EDD70058ECF6 /* LoginControllerHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67EBB341F17EDD70058ECF6 /* LoginControllerHandler.swift */; };
 		C67EBB371F17F9560058ECF6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C67EBB361F17F9560058ECF6 /* GoogleService-Info.plist */; };
 		C67EBB391F18036E0058ECF6 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67EBB381F18036E0058ECF6 /* Account.swift */; };
-		C67EBB3B1F1810E00058ECF6 /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67EBB3A1F1810E00058ECF6 /* NewMessageController.swift */; };
+		C67EBB3B1F1810E00058ECF6 /* NewMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67EBB3A1F1810E00058ECF6 /* NewMessageViewController.swift */; };
 		C67EBB3E1F1817820058ECF6 /* AccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67EBB3D1F1817820058ECF6 /* AccountCell.swift */; };
-		C6D7973E1F1BD9C50005C7BB /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D7973D1F1BD9C50005C7BB /* SettingsController.swift */; };
 		C6D797401F1D4E1C0005C7BB /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D7973F1F1D4E1C0005C7BB /* MessageCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -37,7 +35,11 @@
 		2B6AA39CB1E7C814012F3671 /* Pods-CateChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CateChat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CateChat/Pods-CateChat.debug.xcconfig"; sourceTree = "<group>"; };
 		6941F623DE40F1791D3C9A77 /* Pods-CateChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CateChat.release.xcconfig"; path = "Pods/Target Support Files/Pods-CateChat/Pods-CateChat.release.xcconfig"; sourceTree = "<group>"; };
 		77EEBE91E3E501C7210E8349 /* Pods_CateChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CateChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C66C318E1F1AA6EE00266652 /* ChatControllerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatControllerViewController.swift; sourceTree = "<group>"; };
+		C618F4301F895D2400B9688D /* GoogleToolboxForMac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GoogleToolboxForMac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C618F4321F895D2700B9688D /* GTMSessionFetcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GTMSessionFetcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C618F4341F8964CD00B9688D /* GoogleToolboxForMac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GoogleToolboxForMac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C618F4361F8964D400B9688D /* GTMSessionFetcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GTMSessionFetcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C66C318E1F1AA6EE00266652 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		C66C31941F1B158500266652 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		C66C31961F1B331800266652 /* UserMessagesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserMessagesController.swift; sourceTree = "<group>"; };
 		C67EBB061F16C5A60058ECF6 /* CateChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CateChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -46,10 +48,9 @@
 		C67EBB101F16C5A60058ECF6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C67EBB131F16C5A60058ECF6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C67EBB151F16C5A60058ECF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C67EBB1C1F16D4E90058ECF6 /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
-		C67EBB211F16D55E0058ECF6 /* RegisterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
-		C67EBB231F16D5690058ECF6 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
-		C67EBB251F16D5BE0058ECF6 /* AccountController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountController.swift; sourceTree = "<group>"; };
+		C67EBB211F16D55E0058ECF6 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		C67EBB231F16D5690058ECF6 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		C67EBB251F16D5BE0058ECF6 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		C67EBB291F16D6C00058ECF6 /* GoogleToolboxForMac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleToolboxForMac.framework; path = "Pods/../build/Debug-iphoneos/GoogleToolboxForMac/GoogleToolboxForMac.framework"; sourceTree = "<group>"; };
 		C67EBB2B1F16D6C30058ECF6 /* GTMSessionFetcher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GTMSessionFetcher.framework; path = "Pods/../build/Debug-iphoneos/GTMSessionFetcher/GTMSessionFetcher.framework"; sourceTree = "<group>"; };
 		C67EBB2E1F16D7E80058ECF6 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -58,9 +59,10 @@
 		C67EBB341F17EDD70058ECF6 /* LoginControllerHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginControllerHandler.swift; sourceTree = "<group>"; };
 		C67EBB361F17F9560058ECF6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C67EBB381F18036E0058ECF6 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
-		C67EBB3A1F1810E00058ECF6 /* NewMessageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMessageController.swift; sourceTree = "<group>"; };
+		C67EBB3A1F1810E00058ECF6 /* NewMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMessageViewController.swift; sourceTree = "<group>"; };
 		C67EBB3D1F1817820058ECF6 /* AccountCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountCell.swift; sourceTree = "<group>"; };
-		C6D7973D1F1BD9C50005C7BB /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
+		C6960D811F7AD3F200F5C243 /* IQKeyboardManager.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IQKeyboardManager.framework; path = "Pods/../build/Debug-iphoneos/IQKeyboardManager/IQKeyboardManager.framework"; sourceTree = "<group>"; };
+		C6960D831F7AFC8100F5C243 /* TKKeyboardControl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TKKeyboardControl.framework; path = "../../Library/Developer/Xcode/DerivedData/CateChat-aodsmusjqudhgudkkfppvnpzsrzu/Build/Products/Debug-iphonesimulator/TKKeyboardControl/TKKeyboardControl.framework"; sourceTree = "<group>"; };
 		C6D7973F1F1D4E1C0005C7BB /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -69,8 +71,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C67EBB2C1F16D6C30058ECF6 /* GTMSessionFetcher.framework in Frameworks */,
-				C67EBB2A1F16D6C00058ECF6 /* GoogleToolboxForMac.framework in Frameworks */,
+				C618F4351F8964D400B9688D /* GTMSessionFetcher.framework in Frameworks */,
+				C618F4331F8964CD00B9688D /* GoogleToolboxForMac.framework in Frameworks */,
 				018538B7782749E2F7CF038B /* Pods_CateChat.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -81,6 +83,12 @@
 		07811D61CFB149D3087F2868 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C618F4361F8964D400B9688D /* GTMSessionFetcher.framework */,
+				C618F4341F8964CD00B9688D /* GoogleToolboxForMac.framework */,
+				C618F4321F895D2700B9688D /* GTMSessionFetcher.framework */,
+				C618F4301F895D2400B9688D /* GoogleToolboxForMac.framework */,
+				C6960D831F7AFC8100F5C243 /* TKKeyboardControl.framework */,
+				C6960D811F7AD3F200F5C243 /* IQKeyboardManager.framework */,
 				C67EBB2B1F16D6C30058ECF6 /* GTMSessionFetcher.framework */,
 				C67EBB291F16D6C00058ECF6 /* GoogleToolboxForMac.framework */,
 				77EEBE91E3E501C7210E8349 /* Pods_CateChat.framework */,
@@ -135,14 +143,12 @@
 		C67EBB1E1F16D4ED0058ECF6 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				C67EBB1C1F16D4E90058ECF6 /* HomeController.swift */,
-				C67EBB3A1F1810E00058ECF6 /* NewMessageController.swift */,
-				C67EBB211F16D55E0058ECF6 /* RegisterController.swift */,
-				C67EBB231F16D5690058ECF6 /* LoginController.swift */,
-				C67EBB251F16D5BE0058ECF6 /* AccountController.swift */,
-				C66C318E1F1AA6EE00266652 /* ChatControllerViewController.swift */,
+				C67EBB3A1F1810E00058ECF6 /* NewMessageViewController.swift */,
+				C67EBB211F16D55E0058ECF6 /* RegisterViewController.swift */,
+				C67EBB231F16D5690058ECF6 /* LoginViewController.swift */,
+				C67EBB251F16D5BE0058ECF6 /* AccountViewController.swift */,
+				C66C318E1F1AA6EE00266652 /* ChatViewController.swift */,
 				C66C31961F1B331800266652 /* UserMessagesController.swift */,
-				C6D7973D1F1BD9C50005C7BB /* SettingsController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -221,12 +227,17 @@
 		C67EBAFE1F16C5A60058ECF6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				KnownAssetTags = (
+					New,
+				);
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = wsuv;
 				TargetAttributes = {
 					C67EBB051F16C5A60058ECF6 = {
 						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 3RZ53J8VCQ;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -316,23 +327,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C67EBB3B1F1810E00058ECF6 /* NewMessageController.swift in Sources */,
+				C67EBB3B1F1810E00058ECF6 /* NewMessageViewController.swift in Sources */,
 				C67EBB351F17EDD70058ECF6 /* LoginControllerHandler.swift in Sources */,
-				C66C318F1F1AA6EE00266652 /* ChatControllerViewController.swift in Sources */,
+				C66C318F1F1AA6EE00266652 /* ChatViewController.swift in Sources */,
 				C67EBB311F16D8A30058ECF6 /* AccountControllerHandler.swift in Sources */,
 				C67EBB331F16DB620058ECF6 /* RegisterControllerHandler.swift in Sources */,
-				C67EBB1D1F16D4E90058ECF6 /* HomeController.swift in Sources */,
 				C67EBB3E1F1817820058ECF6 /* AccountCell.swift in Sources */,
 				C67EBB2F1F16D7E80058ECF6 /* Extensions.swift in Sources */,
-				C6D7973E1F1BD9C50005C7BB /* SettingsController.swift in Sources */,
 				C66C31971F1B331800266652 /* UserMessagesController.swift in Sources */,
 				C67EBB391F18036E0058ECF6 /* Account.swift in Sources */,
 				C66C31951F1B158500266652 /* Message.swift in Sources */,
-				C67EBB261F16D5BE0058ECF6 /* AccountController.swift in Sources */,
+				C67EBB261F16D5BE0058ECF6 /* AccountViewController.swift in Sources */,
 				C6D797401F1D4E1C0005C7BB /* MessageCell.swift in Sources */,
-				C67EBB241F16D5690058ECF6 /* LoginController.swift in Sources */,
+				C67EBB241F16D5690058ECF6 /* LoginViewController.swift in Sources */,
 				C67EBB0A1F16C5A60058ECF6 /* AppDelegate.swift in Sources */,
-				C67EBB221F16D55E0058ECF6 /* RegisterController.swift in Sources */,
+				C67EBB221F16D55E0058ECF6 /* RegisterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,7 +377,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -376,7 +387,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -419,7 +434,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -427,7 +444,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -458,16 +479,20 @@
 			baseConfigurationReference = 2B6AA39CB1E7C814012F3671 /* Pods-CateChat.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 3RZ53J8VCQ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/GoogleToolboxForMac",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/GTMSessionFetcher",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/IQKeyboardManager",
 				);
 				INFOPLIST_FILE = CateChat/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Chayce.CateChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -476,16 +501,20 @@
 			baseConfigurationReference = 6941F623DE40F1791D3C9A77 /* Pods-CateChat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 3RZ53J8VCQ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/GoogleToolboxForMac",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/GTMSessionFetcher",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/IQKeyboardManager",
 				);
 				INFOPLIST_FILE = CateChat/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Chayce.CateChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
